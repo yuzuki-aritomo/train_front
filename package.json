@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
     "lint": "next lint"
   },
   "dependencies": {

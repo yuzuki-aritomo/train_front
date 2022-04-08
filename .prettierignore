@@ -1,0 +1,7 @@
+.circleci
+.github
+.next
+adr
+node_modules
+public
+src/graphql/schema.graphql

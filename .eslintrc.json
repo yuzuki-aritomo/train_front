@@ -1,3 +1,62 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "jest/globals": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "jest",
+    "testing-library",
+    "@typescript-eslint",
+    "import",
+    "unused-imports"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "reservedFirst": true
+      }
+    ],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "import/no-default-export": "error",
+    "import/prefer-default-export": "off",
+    "no-nested-ternary": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.stories.{ts,tsx}", "**/pages/**/*.{ts,tsx}"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/prefer-default-export": "warn"
+      }
+    }
+  ],
+  "ignorePatterns": "**/templates/**/*"
 }

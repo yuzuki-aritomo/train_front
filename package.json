@@ -13,6 +13,12 @@
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "yarn lint . --fix",
+      "yarn prettier ."
+    ]
+  },
   "devDependencies": {
     "@types/node": "17.0.23",
     "@types/react": "18.0.0",

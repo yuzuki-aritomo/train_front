@@ -19,14 +19,23 @@ const SelectedStationAround = styled.div`
   margin: 0 auto;
 `;
 const SelectedStationName = styled.p`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: black;
   text-align: center;
+  padding: 0 8px;
   margin: 20px 0 auto auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const SelectedStationRouteName = styled.p`
   color: ${BLUE};
+  font-size: 14px;
   text-align: center;
+  padding: 0 8px;
   margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

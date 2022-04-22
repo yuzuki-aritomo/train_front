@@ -1,4 +1,4 @@
-import SelectedStation from '@/components/common/SelectedStation';
+import {SelectedStation} from '@/components/common/SelectedStation';
 
 export const Home = () => {
   return (

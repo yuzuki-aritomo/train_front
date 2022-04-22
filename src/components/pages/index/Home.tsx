@@ -1,11 +1,10 @@
-import { Countdown } from '@/components/common/Countdown';
+import { MainCountdown } from '@/components/common/MainCountdown';
 import { WRAPPER } from '@/context/style/common';
 import { SelectedStation } from '@/components/common/SelectedStation';
 
 export const Home = () => {
   return (
     <WRAPPER>
-      <h1>Home!!</h1>
       {/* TODO: 駅名 */}
       <div>
         {/* otherStation */}
@@ -13,7 +12,7 @@ export const Home = () => {
         {/* otherStation */}
       </div>
       <div>
-        <Countdown />
+        <MainCountdown departureTime="09:38" />
       </div>
     </WRAPPER>
   );

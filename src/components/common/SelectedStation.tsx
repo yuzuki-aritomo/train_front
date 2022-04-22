@@ -21,7 +21,6 @@ const SelectedStationAround = styled.div`
 const SelectedStationName = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: black;
   text-align: center;
   padding: 0 8px;
   margin: 20px 0 auto auto;

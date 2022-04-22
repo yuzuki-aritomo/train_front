@@ -1,13 +1,17 @@
-import { BLACK, BLUE, WHITE } from '@/context/style/colorTheme';
+import { BLUE, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
 
-export const Countdown: React.FC = (props) => {
+type Props = {
+  departureTime: string;
+};
+
+export const MainCountdown: React.FC<Props> = (props) => {
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>
       <RemainingTime>10:30</RemainingTime>
       <DepartureTime>
-        09:39 <span>発</span>
+        {props.departureTime} <span>発</span>
       </DepartureTime>
     </CountdownWrapper>
   );
@@ -32,15 +36,13 @@ const CountdownWrapper = styled.div`
 
 const Description = styled.p`
   color: ${BLUE};
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px;
 `;
 
 const RemainingTime = styled.h1`
-  font-family: 'Arial';
-  font-weight: 700;
-  font-size: 80px;
+  font-size: 70px;
   line-height: 100%;
   margin: 0 0 10px;
 `;
@@ -50,8 +52,7 @@ const DepartureTime = styled.div`
   padding: 10px 10px;
   font-weight: 700;
   font-size: 22px;
-  color: ${BLACK};
-  width: 80%;
+  width: 75%;
   max-width: 205px;
   text-align: center;
   border-radius: 9999px;

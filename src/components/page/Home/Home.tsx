@@ -1,6 +1,6 @@
-import SelectedStation from '@/components/common/SelectedStation';
 import { Countdown } from '@/components/common/Countdown';
 import { WRAPPER } from '@/context/style/common';
+import { SelectedStation } from '@/components/common/SelectedStation';
 
 export const Home = () => {
   return (

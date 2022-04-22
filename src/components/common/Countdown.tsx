@@ -1,7 +1,7 @@
 import { BLACK, BLUE, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
 
-export const Countdown: React.FC = () => {
+export const Countdown: React.FC = (props) => {
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>

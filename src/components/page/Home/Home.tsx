@@ -1,5 +1,5 @@
 import SelectedStation from '@/components/common/SelectedStation';
-import { SelectedTime } from '@/components/common/SelectedTime';
+import { Countdown } from '@/components/common/Countdown';
 import { WRAPPER } from '@/context/style/common';
 
 export const Home = () => {
@@ -13,7 +13,7 @@ export const Home = () => {
         {/* otherStation */}
       </div>
       <div>
-        <SelectedTime />
+        <Countdown />
       </div>
     </WRAPPER>
   );

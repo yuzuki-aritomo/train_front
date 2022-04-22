@@ -1,21 +1,12 @@
 {
-  "env": {
-    "jest/globals": true
-  },
+  "env": {},
   "extends": [
-    "airbnb",
     "prettier",
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "jest",
-    "testing-library",
-    "@typescript-eslint",
-    "import",
-    "unused-imports"
-  ],
+  "plugins": ["@typescript-eslint", "import", "unused-imports"],
   "rules": {
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",

@@ -4,7 +4,7 @@ import { BLACK, BLUE } from '@/context/style/colorTheme';
 type Props = {
   selectedStation: string;
   selectedStationLine: string;
-}
+};
 
 export const SelectedStation: React.FC<Props> = (props) => {
   return (

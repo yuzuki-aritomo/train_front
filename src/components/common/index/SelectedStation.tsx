@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { BLACK, BLUE } from '@/context/style/colorTheme';
 
-type Props = {
+type SelectedStationProps = {
   selectedStation: string;
   selectedStationLine: string;
 };
 
-export const SelectedStation: React.FC<Props> = (props) => {
+export const SelectedStation: React.FC<SelectedStationProps> = (props) => {
   return (
     <StationWrapper>
       <StationName>{props.selectedStation}</StationName>

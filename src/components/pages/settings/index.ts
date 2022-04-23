@@ -1,1 +1,1 @@
-export { Setting } from './Settings';
+export { Settings } from './Settings';

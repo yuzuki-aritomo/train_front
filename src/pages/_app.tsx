@@ -1,19 +1,10 @@
-import { BLACK, WHITE } from '@/context/style/colorTheme';
 import type { AppProps } from 'next/app';
-import styled from 'styled-components';
+import "@/context/style/style.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Wrapper>
-      <Component {...pageProps} />
-    </Wrapper>
-  );
+  return <Component {...pageProps} />
+  
 }
 
 export default MyApp;
 
-const Wrapper = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: ${WHITE};
-  color: ${BLACK};
-`;

@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import { Setting } from '@/components/pages/settings';
+import { Settings } from '@/components/pages/settings';
 
 const SettingPage: NextPage = () => {
-  return <Setting />;
+  return <Settings />;
 };
 
 export default SettingPage;

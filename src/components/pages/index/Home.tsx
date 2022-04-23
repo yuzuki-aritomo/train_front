@@ -31,11 +31,11 @@ export const Home = () => {
 };
 
 const StationsWrapper = styled.div`
-  background-color: rgba(108, 155, 210, 0.15);
-  border-radius: 32px;
-  padding: 0 8%;
-  margin: 20% 0 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(108, 155, 210, 0.15);
+  border-radius: 32px;
+  padding: 0 10px;
+  margin: 25px 0 30px;
 `;

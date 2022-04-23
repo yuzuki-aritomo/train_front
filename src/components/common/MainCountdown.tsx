@@ -1,11 +1,11 @@
 import { BLUE, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
 
-type Props = {
+type MainCountdownProps = {
   departureTime: string;
 };
 
-export const MainCountdown: React.FC<Props> = (props) => {
+export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>

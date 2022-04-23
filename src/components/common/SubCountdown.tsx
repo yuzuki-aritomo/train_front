@@ -1,13 +1,13 @@
 import { BLACK, BLUE, GRAY, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
 
-type Props = {
+type SubCountdownProps = {
   countdown: string;
   departureTime?: string;
   hasDeparted: boolean;
 };
 
-export const SubCountdown: React.FC<Props> = (props) => {
+export const SubCountdown: React.FC<SubCountdownProps> = (props) => {
   return (
     <Wrapper hasDeparted={props.hasDeparted}>
       <Countdown hasDeparted={props.hasDeparted}>{props.countdown}</Countdown>

@@ -1,5 +1,5 @@
-import { BLUE, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
+import { BLUE, WHITE } from '@/context/style/colorTheme';
 
 type MainCountdownProps = {
   departureTime: string;

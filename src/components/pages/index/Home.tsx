@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { MainCountdown } from '@/components/common/MainCountdown';
+import { MainCountdown } from '@/components/common/index/MainCountdown';
+import { OtherStation } from '@/components/common/index/OtherStation';
+import { SelectedStation } from '@/components/common/index/SelectedStation';
+import { SubCountdown } from '@/components/common/index/SubCountdown';
 import { WRAPPER } from '@/context/style/common';
-import { SelectedStation } from '@/components/common/SelectedStation';
-import { SubCountdown } from '@/components/common/SubCountdown';
-import { OtherStation } from '@/components/common/OtherStation';
 
 export const Home = () => {
   return (
@@ -20,11 +20,7 @@ export const Home = () => {
       <div>
         <SubCountdown countdown="10:30" hasDeparted={true} />
         <MainCountdown departureTime="09:38" />
-        <SubCountdown
-          countdown="10:30"
-          hasDeparted={false}
-          departureTime="09:38"
-        />
+        <SubCountdown countdown="10:30" hasDeparted={false} />
       </div>
     </WRAPPER>
   );

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BLACK } from '@/context/style/colorTheme';
 
 type Props = {
   otherStation: string;
@@ -22,7 +23,7 @@ const StationWrapper = styled.div`
 const StationName = styled.p`
   font-size: 12px;
   font-weight: bold;
-  color: black;
+  color: ${BLACK};
   margin: 0 0;
   white-space: nowrap;
   overflow: hidden;
@@ -31,7 +32,7 @@ const StationName = styled.p`
 
 const StationLineName = styled.p`
   font-size: 8px;
-  color: black;
+  color: ${BLACK};
   margin: 0 0;
   white-space: nowrap;
   overflow: hidden;

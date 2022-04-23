@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BLUE } from '@/context/style/colorTheme';
+import { BLACK, BLUE } from '@/context/style/colorTheme';
 
 type Props = {
   selectedStation: string;
@@ -27,7 +27,7 @@ const StationWrapper = styled.div`
 const StationName = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: black;
+  color: ${BLACK};
   text-align: center;
   padding: 0 8px;
   margin: 20px 0 auto auto;

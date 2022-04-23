@@ -1,5 +1,5 @@
-import { BLACK, BLUE, GRAY, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
+import { BLACK, BLUE, GRAY, WHITE } from '@/context/style/colorTheme';
 
 type SubCountdownProps = {
   countdown: string;

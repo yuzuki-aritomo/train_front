@@ -36,7 +36,7 @@
         }
       }
     ],
-    "import/no-default-export": "error",
+    "import/no-default-export": "off",
     "import/prefer-default-export": "off",
     "no-nested-ternary": "off"
   },
@@ -45,7 +45,7 @@
       "files": ["**/*.stories.{ts,tsx}", "**/pages/**/*.{ts,tsx}"],
       "rules": {
         "import/no-default-export": "off",
-        "import/prefer-default-export": "warn"
+        "import/prefer-default-export": "off"
       }
     }
   ],

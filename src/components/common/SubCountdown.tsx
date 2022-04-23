@@ -1,41 +1,65 @@
-import { BLUE, WHITE } from '@/context/style/colorTheme';
+import { BLACK, BLUE, GRAY, WHITE } from '@/context/style/colorTheme';
 import styled from 'styled-components';
 
-export const SubCountdown: React.FC = () => {
+type Props = {
+  countdown: string;
+  departureTime?: string;
+  hasDeparted: boolean;
+};
+
+export const SubCountdown: React.FC<Props> = (props) => {
   return (
-    <CountdownWrapper>
-      <Description>出発時刻まで残り...</Description>
-      <RemainingTime>10:30</RemainingTime>
-    </CountdownWrapper>
+    <Wrapper hasDeparted={props.hasDeparted}>
+      <Countdown hasDeparted={props.hasDeparted}>{props.countdown}</Countdown>
+      {props.hasDeparted ? (
+        <Description>秒前に出発</Description>
+      ) : (
+        <DepartureTime>
+          {props.departureTime} <span>発</span>
+        </DepartureTime>
+      )}
+    </Wrapper>
   );
 };
 
-const CountdownWrapper = styled.div`
+const Wrapper = styled.div<{ hasDeparted: boolean }>`
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 60vw;
-  height: 60vw;
-  max-width: 400px;
-  max-height: 400px;
+  width: 18vw;
+  height: 18vw;
+  max-width: 120px;
+  max-height: 120px;
   background-color: ${WHITE};
-  border: 10px solid ${BLUE};
-  border-radius: 80px;
-  padding: 20px;
-  margin: 0 auto;
-  box-shadow: 0px 4px 12px 2px rgba(108, 155, 210, 0.5);
+  border: ${(props) =>
+    props.hasDeparted ? `5px solid ${GRAY}` : `5px solid ${BLUE}`};
+  border-radius: 24px;
+  padding: 5px 10px;
+  margin: 20px auto;
+  box-shadow: 0px 4px 12px 2px rgba(23, 25, 30, 0.25);
 `;
 
 const Description = styled.p`
-  color: ${BLUE};
-  font-size: 18px;
+  color: ${GRAY};
+  font-size: 12px;
   font-weight: 700;
-  margin: 0 0 15px;
+  text-align: center;
+  margin: 0;
 `;
 
-const RemainingTime = styled.h1`
-  font-size: 70px;
+const Countdown = styled.h1<{ hasDeparted: boolean }>`
+  color: ${(props) => (props.hasDeparted ? GRAY : BLACK)};
+  font-size: 24px;
   line-height: 100%;
-  margin: 0 0 10px;
+  margin: 0;
+`;
+
+const DepartureTime = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  span {
+    font-size: 12px;
+  }
 `;

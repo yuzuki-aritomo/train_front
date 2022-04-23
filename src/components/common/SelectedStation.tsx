@@ -16,31 +16,37 @@ export const SelectedStation: React.FC<Props> = (props) => {
 };
 
 const StationWrapper = styled.div`
-  width: 40%;
-  height: 94px;
-  border: 7px solid;
-  border-color: ${BLUE};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  max-width: 40%;
+  min-width: 100px;
+  margin: -10px 0;
+  padding: 10px;
+  border: 7px solid ${BLUE};
   border-radius: 24px;
-  margin: -20px 0;
   background-color: #fff;
 `;
+
 const StationName = styled.p`
-  font-size: 20px;
+  width: 100%;
+  font-size: 18px;
   font-weight: bold;
   color: ${BLACK};
+  margin: 0;
   text-align: center;
-  padding: 0 8px;
-  margin: 20px 0 auto auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 const StationLineName = styled.p`
+  width: 100%;
   color: ${BLUE};
   font-size: 14px;
+  margin: 0;
   text-align: center;
-  padding: 0 8px;
-  margin: 0 auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

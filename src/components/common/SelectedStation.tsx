@@ -1,27 +1,33 @@
 import styled from 'styled-components';
-import { BLUE } from '@/context/style/colorTheme';
+import { BLACK, BLUE } from '@/context/style/colorTheme';
 
-export const SelectedStation = () => {
+type Props = {
+  selectedStation: string;
+  selectedStationLine: string;
+}
+
+export const SelectedStation: React.FC<Props> = (props) => {
   return (
-    <SelectedStationAround>
-      <SelectedStationName>京都駅</SelectedStationName>
-      <SelectedStationRouteName>JR京都線</SelectedStationRouteName>
-    </SelectedStationAround>
+    <StationWrapper>
+      <StationName>{props.selectedStation}</StationName>
+      <StationLineName>{props.selectedStationLine}</StationLineName>
+    </StationWrapper>
   );
 };
 
-const SelectedStationAround = styled.div`
-  width: 39%;
+const StationWrapper = styled.div`
+  width: 40%;
   height: 94px;
   border: 7px solid;
   border-color: ${BLUE};
   border-radius: 24px;
-  margin: 0 auto;
+  margin: -20px 0;
+  background-color: #fff;
 `;
-const SelectedStationName = styled.p`
+const StationName = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: black;
+  color: ${BLACK};
   text-align: center;
   padding: 0 8px;
   margin: 20px 0 auto auto;
@@ -29,7 +35,7 @@ const SelectedStationName = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-const SelectedStationRouteName = styled.p`
+const StationLineName = styled.p`
   color: ${BLUE};
   font-size: 14px;
   text-align: center;

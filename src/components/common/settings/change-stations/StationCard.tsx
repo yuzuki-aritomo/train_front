@@ -1,25 +1,34 @@
-import styled from "styled-components";
-import { BLACK, GRAY } from "@/context/style/colorTheme";
+import styled from 'styled-components';
+import { BLACK, GRAY } from '@/context/style/colorTheme';
 
 type StationCardProps = {
-  StationName: string,
-  StationLineName: string,
+  StationName: string;
+  StationLineName: string;
+  StationDirection: string[];
+  setSelectedStation: React.Dispatch<React.SetStateAction<string[]>>;
   onClickStation: () => void;
-}
+};
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
-  return(
-    <StationCardWrapper>
-      <div>
-        <StationName>{props.StationName}</StationName>
-        <StationLineName>{props.StationLineName}</StationLineName>
-      </div>
-      <StationRegisterContainer onClick={props.onClickStation}>
-        選択
-      </StationRegisterContainer>
-    </StationCardWrapper>
-  )
-}
+  const onClickSelectButton = () => {
+    props.onClickStation();
+    props.setSelectedStation(props.StationDirection);
+  };
+
+  return (
+    <>
+      <StationCardWrapper>
+        <div>
+          <StationName>{props.StationName}</StationName>
+          <StationLineName>{props.StationLineName}</StationLineName>
+        </div>
+        <StationRegisterContainer onClick={onClickSelectButton}>
+          選択
+        </StationRegisterContainer>
+      </StationCardWrapper>
+    </>
+  );
+};
 
 const StationCardWrapper = styled.div`
   width: 96vw;

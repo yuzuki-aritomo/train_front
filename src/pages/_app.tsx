@@ -1,23 +1,15 @@
 import type { AppProps } from 'next/app';
-import styled from 'styled-components';
 import '@/context/style/globalStyle.css';
 import '@/context/style/swiperStyle.css';
 import 'swiper/css/bundle';
 import 'destyle.css';
-import { BLACK, WHITE } from '@/context/style/colorTheme';
+import "@/context/style/style.css"
+import "destyle.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Wrapper>
-      <Component {...pageProps} />
-    </Wrapper>
-  );
+  return <Component {...pageProps} />
+  
 }
 
 export default MyApp;
 
-const Wrapper = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: ${WHITE};
-  color: ${BLACK};
-`;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { BLACK } from '@/context/style/colorTheme';
 
-type Props = {
+type OtherStationProps = {
   otherStation: string;
   otherStationLine: string;
 };
 
-export const OtherStation: React.FC<Props> = (props) => {
+export const OtherStation: React.FC<OtherStationProps> = (props) => {
   return (
     <StationWrapper>
       <StationName>{props.otherStation}</StationName>
@@ -26,7 +26,6 @@ const StationName = styled.p`
   text-align: center;
   font-weight: bold;
   color: ${BLACK};
-  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -37,7 +36,6 @@ const StationLineName = styled.p`
   width: 100%;
   text-align: center;
   color: ${BLACK};
-  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

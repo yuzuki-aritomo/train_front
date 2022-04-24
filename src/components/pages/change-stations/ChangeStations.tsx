@@ -1,23 +1,32 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField } from "@mui/material";
 import styled from "styled-components";
 import {StationCard} from "@/components/common/settings/change-stations/StationCard";
 import { GRAY } from "@/context/style/colorTheme";
 
 export const ChangeStations = () => {
+  const stationsData: {stationLinename: string, stationName: string}[] = [{
+    stationLinename: "谷町線",
+    stationName: "東梅田駅"
+  }, {
+    stationLinename: "御堂筋線",
+    stationName: "梅田駅"
+  },{
+    stationLinename: "谷町線",
+    stationName: "東梅田駅"
+  },{
+    stationLinename: "谷町線",
+    stationName: "東梅田駅"
+  }]
   return(
     <>
-      {/* 検索バーの作成 */}
       <SearchField>
         <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
-        <TextField fullWidth id="standard-basic" label="駅名を入力してください" sx={{ margin: '1px 3vw 1px 0' }} variant="standard" />
+        <SearchInput placeholder="駅名を入力してください" type="search" />
       </SearchField>
       <StationCardList>
-        <StationCard />
-        <StationCard />
-        <StationCard />
-        <StationCard />
-        <StationCard />
+        {stationsData.map((data, index) => {
+          return <StationCard key={index} StationLineName={data.stationLinename} StationName={data.stationName} />
+        })}
       </StationCardList>
     </>
   )
@@ -32,6 +41,17 @@ const SearchField = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SearchInput = styled.input`
+  width: 80%;
+  height: 100%;
+  backgroundColor: ${GRAY};
+  border: 0;
+  padding: 10px;
+  :focus {
+    outline: 0ch;
+  };
 `;
 
 const StationCardList = styled.div`

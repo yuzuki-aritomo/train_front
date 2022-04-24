@@ -20,6 +20,7 @@
     "@types/react-swipeable-views": "^0.13.1",
     "@types/styled-components": "^5.1.25",
     "babel-plugin-styled-components": "^2.0.7",
+    "destyle.css": "^3.0.2",
     "eslint-plugin-unused-imports": "^2.0.0",
     "next": "12.1.4",
     "react": "18.0.0",

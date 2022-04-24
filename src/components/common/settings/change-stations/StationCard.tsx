@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { BLACK, GRAY } from "@/context/style/colorTheme";
 
-export const StationCard = () => {
+type StationCardProps = {
+  StationName: string,
+  StationLineName: string
+}
+
+export const StationCard: React.FC<StationCardProps> = (props) => {
   return(
     <StationCardWrapper>
       <div>
-        <StationName>東梅田駅</StationName>
-        <StationLineName>谷町線</StationLineName>
+        <StationName>{props.StationName}</StationName>
+        <StationLineName>{props.StationLineName}</StationLineName>
       </div>
       <StationRegisterContainer>
         登録
@@ -42,7 +47,7 @@ const StationLineName = styled.p`
   color: purple;
   font-size: 14px;
   margin: 0;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

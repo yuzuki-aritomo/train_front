@@ -2,8 +2,6 @@ import React from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MainCountdown } from '@/components/common/index/MainCountdown';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 

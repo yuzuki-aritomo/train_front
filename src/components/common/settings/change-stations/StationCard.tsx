@@ -3,7 +3,8 @@ import { BLACK, GRAY } from "@/context/style/colorTheme";
 
 type StationCardProps = {
   StationName: string,
-  StationLineName: string
+  StationLineName: string,
+  onClickStation: () => void;
 }
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
@@ -13,8 +14,8 @@ export const StationCard: React.FC<StationCardProps> = (props) => {
         <StationName>{props.StationName}</StationName>
         <StationLineName>{props.StationLineName}</StationLineName>
       </div>
-      <StationRegisterContainer>
-        登録
+      <StationRegisterContainer onClick={props.onClickStation}>
+        選択
       </StationRegisterContainer>
     </StationCardWrapper>
   )
@@ -53,7 +54,7 @@ const StationLineName = styled.p`
   text-overflow: ellipsis;
 `;
 
-const StationRegisterContainer = styled.p`
+const StationRegisterContainer = styled.button`
   width: 18vw;
   color: white;
   font-size: 14px;

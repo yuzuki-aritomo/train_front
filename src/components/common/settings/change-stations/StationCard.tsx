@@ -1,26 +1,25 @@
 import styled from 'styled-components';
+import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { BLACK, GRAY } from '@/context/style/colorTheme';
 
 type StationCardProps = {
-  StationName: string;
-  StationLineName: string;
-  StationDirection: string[];
-  setSelectedStation: React.Dispatch<React.SetStateAction<string[]>>;
+  Station: StationType;
+  setSelectedStationDir: React.Dispatch<React.SetStateAction<string[]>>;
   onClickStation: () => void;
 };
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
   const onClickSelectButton = () => {
     props.onClickStation();
-    props.setSelectedStation(props.StationDirection);
+    props.setSelectedStationDir(props.Station.stationDirection);
   };
 
   return (
     <>
       <StationCardWrapper>
         <div>
-          <StationName>{props.StationName}</StationName>
-          <StationLineName>{props.StationLineName}</StationLineName>
+          <StationName>{props.Station.stationName}</StationName>
+          <StationLineName>{props.Station.stationLineName}</StationLineName>
         </div>
         <StationRegisterContainer onClick={onClickSelectButton}>
           選択

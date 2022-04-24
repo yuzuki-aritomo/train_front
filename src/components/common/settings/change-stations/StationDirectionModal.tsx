@@ -2,31 +2,29 @@ import { Modal } from '@mui/material';
 import styled from 'styled-components';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
 
-type StationDirectModalProps = {
+type StationDirectionModalProps = {
   isModalOpen: boolean;
   handleModalClose: () => void;
-  selectedStation: string[];
+  selectedStationDir: string[];
 };
 
-export const StationDirectModal: React.FC<StationDirectModalProps> = (
+export const StationDirectionModal: React.FC<StationDirectionModalProps> = (
   props
 ) => {
   return (
-    <>
-      <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
-        <ModalBox>
-          <ModalSelectWrapper>方面を選択してください</ModalSelectWrapper>
-          {props.selectedStation.map((data, index) => {
-            return (
-              <StationDirectionWrapper key={index}>
-                <StationDirection>{data}</StationDirection>
-                <StationRegisterContainer>登録</StationRegisterContainer>
-              </StationDirectionWrapper>
-            );
-          })}
-        </ModalBox>
-      </Modal>
-    </>
+    <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
+      <ModalBox>
+        <ModalSelectWrapper>方面を選択してください</ModalSelectWrapper>
+        {props.selectedStationDir.map((data, index) => {
+          return (
+            <StationDirectionWrapper key={index}>
+              <StationDirection>{data}</StationDirection>
+              <StationRegisterContainer>登録</StationRegisterContainer>
+            </StationDirectionWrapper>
+          );
+        })}
+      </ModalBox>
+    </Modal>
   );
 };
 

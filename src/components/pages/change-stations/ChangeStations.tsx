@@ -2,17 +2,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
-import { StationDirectModal } from '@/components/common/settings/change-stations/StationDirectModal';
+import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { GRAY } from '@/context/style/colorTheme';
 
-type StationItem = {
+export type StationType = {
   stationLineName: string;
   stationName: string;
   stationDirection: string[];
 };
 
 export const ChangeStations = () => {
-  const stationsList: StationItem[] = [
+  const stationsList: StationType[] = [
     {
       stationLineName: '谷町線',
       stationName: '東梅田駅',
@@ -45,7 +45,7 @@ export const ChangeStations = () => {
   const handleModalClose = () => setOpen(false);
 
   const [stationName, setStationName] = useState<string>();
-  const [selectedStation, setSelectedStation] = useState<string[]>([]);
+  const [selectedStationDir, setSelectedStationDir] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(stationName);
@@ -71,19 +71,17 @@ export const ChangeStations = () => {
           return (
             <StationCard
               key={index}
-              StationDirection={data.stationDirection}
-              StationLineName={data.stationLineName}
-              StationName={data.stationName}
-              setSelectedStation={setSelectedStation}
+              Station={data}
+              setSelectedStationDir={setSelectedStationDir}
               onClickStation={handleModalOpen}
             />
           );
         })}
       </StationCardList>
-      <StationDirectModal
+      <StationDirectionModal
         handleModalClose={handleModalClose}
         isModalOpen={open}
-        selectedStation={selectedStation}
+        selectedStationDir={selectedStationDir}
       />
     </>
   );

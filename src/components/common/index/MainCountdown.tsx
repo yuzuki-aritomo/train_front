@@ -1,17 +1,42 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { calcTimeDelta } from '@/components/util/calcTimeDelta';
+import { formattedDate } from '@/components/util/formattedDate';
 import { BLUE } from '@/context/style/colorTheme';
 
+export type CountDownType = {
+  minutes: string;
+  seconds: string;
+};
+
 type MainCountdownProps = {
-  departureTime: string;
+  departureTime: Date;
 };
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
+  const [countdown, setCountdown] = useState<CountDownType>();
+
+  useEffect(() => {
+    const timer: NodeJS.Timeout = setInterval(() => {
+      calcTimeDelta({
+        departureTime: props.departureTime,
+        setCountdown: setCountdown,
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>
-      <Countdown>10:30</Countdown>
+      <Countdown>
+        {countdown?.minutes}:{countdown?.seconds}
+      </Countdown>
       <DepartureTime>
-        {props.departureTime} <span>発</span>
+        {formattedDate(props.departureTime, 'monthsDays')} <span>発</span>
       </DepartureTime>
     </CountdownWrapper>
   );
@@ -22,7 +47,7 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 60vw;
+  width: auto;
   height: 60vw;
   max-width: 400px;
   max-height: 400px;

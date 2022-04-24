@@ -6,22 +6,27 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 type CountInfo = {
-  departureTime: string;
+  departureTime: Date;
   hasDeparted: boolean;
 };
 
 export const Home = () => {
+  const createDate = (hours: number, minutes: number): Date => {
+    const newDate: Date = new Date(2022, 4 - 1, 25, hours, minutes);
+    return newDate;
+  };
+
   const countInfoList: CountInfo[] = [
-    { departureTime: '09:10', hasDeparted: true },
-    { departureTime: '10:10', hasDeparted: false },
-    { departureTime: '11:10', hasDeparted: false },
-    { departureTime: '12:10', hasDeparted: false },
-    { departureTime: '13:10', hasDeparted: false },
-    { departureTime: '14:10', hasDeparted: false },
-    { departureTime: '15:10', hasDeparted: false },
-    { departureTime: '16:10', hasDeparted: false },
-    { departureTime: '17:10', hasDeparted: false },
-    { departureTime: '18:10', hasDeparted: false },
+    { departureTime: createDate(9, 1), hasDeparted: true },
+    { departureTime: createDate(10, 1), hasDeparted: false },
+    { departureTime: createDate(11, 1), hasDeparted: false },
+    { departureTime: createDate(12, 1), hasDeparted: false },
+    { departureTime: createDate(13, 1), hasDeparted: false },
+    { departureTime: createDate(14, 1), hasDeparted: false },
+    { departureTime: createDate(15, 1), hasDeparted: false },
+    { departureTime: createDate(16, 1), hasDeparted: false },
+    { departureTime: createDate(17, 1), hasDeparted: false },
+    { departureTime: createDate(18, 1), hasDeparted: false },
   ];
 
   return (

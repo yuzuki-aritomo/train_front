@@ -1,37 +1,100 @@
-import styled from 'styled-components';
-import { MainCountdown } from '@/components/common/index/MainCountdown';
-import { OtherStation } from '@/components/common/index/OtherStation';
-import { SelectedStation } from '@/components/common/index/SelectedStation';
-import { SubCountdown } from '@/components/common/index/SubCountdown';
+import React, { useEffect, useState } from 'react';
+import { SwipeableHandlers, useSwipeable } from 'react-swipeable';
+import { SubCountdown } from '@/components/common/index/staitions/SubCountdown';
+import { GRAY } from '@/context/style/colorTheme';
 import { WRAPPER } from '@/context/style/common';
 
+type CountInfo = {
+  departureTime: string;
+  hasDeparted: boolean;
+};
+
 export const Home = () => {
+  const [swipeDir, setSwipeDir] = useState<string>('');
+  const [arrayNum, setArrayNum] = useState<number>(1);
+  const countInfoList: CountInfo[] = [
+    { departureTime: '09:10', hasDeparted: true },
+    { departureTime: '10:10', hasDeparted: false },
+    { departureTime: '11:10', hasDeparted: false },
+    { departureTime: '12:10', hasDeparted: false },
+    { departureTime: '13:10', hasDeparted: false },
+    { departureTime: '14:10', hasDeparted: false },
+    { departureTime: '15:10', hasDeparted: false },
+    { departureTime: '16:10', hasDeparted: false },
+    { departureTime: '17:10', hasDeparted: false },
+    { departureTime: '18:10', hasDeparted: false },
+  ];
+
+  const handlers: SwipeableHandlers = useSwipeable({
+    onSwiped: (eventData) => {
+      setSwipeDir(eventData.dir);
+    },
+  });
+
+  useEffect(() => {
+    if (swipeDir === 'Up') {
+      const updatedArrayNum: number = arrayNum + 1;
+      setArrayNum(updatedArrayNum);
+    } else if (swipeDir === 'Down') {
+      const updatedArrayNum: number = arrayNum - 1;
+      setArrayNum(updatedArrayNum);
+    }
+    setSwipeDir('');
+  }, [swipeDir]);
+
   return (
     <WRAPPER>
-      {/* TODO: 駅名 */}
-      <StationsWrapper>
-        <OtherStation otherStation="阪急梅田駅" otherStationLine="阪急電車" />
-        <SelectedStation
-          selectedStation="京都駅"
-          selectedStationLine="JR京都線"
-        />
-        <OtherStation otherStation="阪急梅田駅" otherStationLine="阪急電車" />
-      </StationsWrapper>
-      <div>
-        <SubCountdown countdown="10:30" hasDeparted={true} />
-        <MainCountdown departureTime="09:38" />
-        <SubCountdown countdown="10:30" hasDeparted={false} />
+      <div
+        {...handlers}
+        style={{
+          backgroundColor: GRAY,
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          WebkitTransform: 'translate(-50%, -50%)',
+          msTransform: 'translate(-50%, -50%)',
+          padding: '10px 50px',
+          width: '100%',
+        }}
+      >
+        {countInfoList.map((info, index) => {
+          const isValidSubCountdown = (): boolean => {
+            return (
+              arrayNum - 2 === index ||
+              arrayNum - 1 === index ||
+              arrayNum === index ||
+              arrayNum + 1 === index ||
+              arrayNum + 2 === index
+            );
+          };
+
+          return (
+            <>
+              {isValidSubCountdown() && (
+                <SubCountdown
+                  key={index}
+                  arrayNum={arrayNum}
+                  countdown="01:00"
+                  departureTime={info.departureTime}
+                  hasDeparted={info.hasDeparted}
+                  index={index}
+                />
+              )}
+            </>
+          );
+        })}
       </div>
     </WRAPPER>
   );
 };
 
-const StationsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(108, 155, 210, 0.15);
-  border-radius: 32px;
-  padding: 0 10px;
-  margin: 25px 0 30px;
-`;
+// const StationsWrapper = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   background-color: rgba(108, 155, 210, 0.15);
+//   border-radius: 32px;
+//   padding: 0 10px;
+//   margin: 25px 0 30px;
+// `;

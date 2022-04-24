@@ -1,6 +1,8 @@
-import { BLACK, WHITE } from '@/context/style/colorTheme';
 import type { AppProps } from 'next/app';
 import styled from 'styled-components';
+import '@/context/style/globalStyle.css';
+import 'destyle.css';
+import { BLACK, WHITE } from '@/context/style/colorTheme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

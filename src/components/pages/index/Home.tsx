@@ -1,37 +1,47 @@
-import styled from 'styled-components';
+import React from 'react';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { MainCountdown } from '@/components/common/index/MainCountdown';
-import { OtherStation } from '@/components/common/index/OtherStation';
-import { SelectedStation } from '@/components/common/index/SelectedStation';
-import { SubCountdown } from '@/components/common/index/SubCountdown';
-import { WRAPPER } from '@/context/style/common';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-export const Home = () => {
-  return (
-    <WRAPPER>
-      {/* TODO: 駅名 */}
-      <StationsWrapper>
-        <OtherStation otherStation="阪急梅田駅" otherStationLine="阪急電車" />
-        <SelectedStation
-          selectedStation="京都駅"
-          selectedStationLine="JR京都線"
-        />
-        <OtherStation otherStation="阪急梅田駅" otherStationLine="阪急電車" />
-      </StationsWrapper>
-      <div>
-        <SubCountdown countdown="10:30" hasDeparted={true} />
-        <MainCountdown departureTime="09:38" />
-        <SubCountdown countdown="10:30" hasDeparted={false} />
-      </div>
-    </WRAPPER>
-  );
+type CountInfo = {
+  departureTime: string;
+  hasDeparted: boolean;
 };
 
-const StationsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(108, 155, 210, 0.15);
-  border-radius: 32px;
-  padding: 0 10px;
-  margin: 25px 0 30px;
-`;
+export const Home = () => {
+  const countInfoList: CountInfo[] = [
+    { departureTime: '09:10', hasDeparted: true },
+    { departureTime: '10:10', hasDeparted: false },
+    { departureTime: '11:10', hasDeparted: false },
+    { departureTime: '12:10', hasDeparted: false },
+    { departureTime: '13:10', hasDeparted: false },
+    { departureTime: '14:10', hasDeparted: false },
+    { departureTime: '15:10', hasDeparted: false },
+    { departureTime: '16:10', hasDeparted: false },
+    { departureTime: '17:10', hasDeparted: false },
+    { departureTime: '18:10', hasDeparted: false },
+  ];
+
+  return (
+    <Swiper
+      centeredSlides={true}
+      direction="vertical"
+      modules={[Pagination]}
+      pagination={{
+        clickable: false,
+      }}
+      slidesPerView={'auto'}
+      spaceBetween={30}
+    >
+      {countInfoList.map((info, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <MainCountdown departureTime={info.departureTime} />
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
+  );
+};

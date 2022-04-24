@@ -1,0 +1,23 @@
+#app {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #fff;
+  font-size: 14px;
+  color: #17191e;
+  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    'Arial', sans-serif;
+  max-width: 680px;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 700;
+}

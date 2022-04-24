@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BLUE, WHITE } from '@/context/style/colorTheme';
+import { BLUE } from '@/context/style/colorTheme';
 
 type MainCountdownProps = {
   departureTime: string;
@@ -26,7 +26,7 @@ const CountdownWrapper = styled.div`
   height: 60vw;
   max-width: 400px;
   max-height: 400px;
-  background-color: ${WHITE};
+  background-color: '#eee';
   border: 10px solid ${BLUE};
   border-radius: 40px;
   padding: 0px 20px;
@@ -43,6 +43,7 @@ const Description = styled.p`
 
 const Countdown = styled.h1`
   font-size: 70px;
+  font-weight: 700;
   line-height: 100%;
   margin: 0 0 10px;
 `;

@@ -72,8 +72,10 @@ export const ChangeStations = () => {
             <StationCard
               key={index}
               Station={data}
-              setSelectedStationDir={setSelectedStationDir}
-              onClickStation={handleModalOpen}
+              onClickStation={() => {
+                handleModalOpen();
+                setSelectedStationDir(data.stationDirection);
+              }}
             />
           );
         })}

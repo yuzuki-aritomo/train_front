@@ -4,16 +4,10 @@ import { BLACK, GRAY } from '@/context/style/colorTheme';
 
 type StationCardProps = {
   Station: StationType;
-  setSelectedStationDir: React.Dispatch<React.SetStateAction<string[]>>;
   onClickStation: () => void;
 };
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
-  const onClickSelectButton = () => {
-    props.onClickStation();
-    props.setSelectedStationDir(props.Station.stationDirection);
-  };
-
   return (
     <>
       <StationCardWrapper>
@@ -21,7 +15,7 @@ export const StationCard: React.FC<StationCardProps> = (props) => {
           <StationName>{props.Station.stationName}</StationName>
           <StationLineName>{props.Station.stationLineName}</StationLineName>
         </div>
-        <StationRegisterContainer onClick={onClickSelectButton}>
+        <StationRegisterContainer onClick={props.onClickStation}>
           選択
         </StationRegisterContainer>
       </StationCardWrapper>

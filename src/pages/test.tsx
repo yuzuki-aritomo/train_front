@@ -1,43 +1,40 @@
 import React from 'react';
 // Import Swiper React components
+import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/pagination';
 
-type CountInfo = {
-  departureTime: string;
-  hasDeparted: boolean;
-};
+// import '@/context/style/style.css';
 
-const Test = () => {
-  const countInfoList: CountInfo[] = [
-    { departureTime: '09:10', hasDeparted: true },
-    { departureTime: '10:10', hasDeparted: false },
-    { departureTime: '11:10', hasDeparted: false },
-    { departureTime: '12:10', hasDeparted: false },
-    { departureTime: '13:10', hasDeparted: false },
-    { departureTime: '14:10', hasDeparted: false },
-    { departureTime: '15:10', hasDeparted: false },
-    { departureTime: '16:10', hasDeparted: false },
-    { departureTime: '17:10', hasDeparted: false },
-    { departureTime: '18:10', hasDeparted: false },
-  ];
+// import required modules
 
+export default function App() {
   return (
     <>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={50}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
+        centeredSlides={true}
+        className="mySwiper"
+        direction="vertical"
+        modules={[Pagination]}
+        pagination={{
+          clickable: true,
+        }}
+        slidesPerView={'auto'}
+        spaceBetween={30}
       >
-        {countInfoList.map((info, index) => {
-          return <SwiperSlide key={index}>{info.departureTime}</SwiperSlide>;
-        })}
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
     </>
   );
-};
-
-export default Test;
+}

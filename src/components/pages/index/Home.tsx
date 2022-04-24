@@ -74,11 +74,9 @@ export const Home = () => {
               {isValidSubCountdown() && (
                 <SubCountdown
                   key={index}
-                  arrayNum={arrayNum}
                   countdown="01:00"
                   departureTime={info.departureTime}
                   hasDeparted={info.hasDeparted}
-                  index={index}
                 />
               )}
             </>

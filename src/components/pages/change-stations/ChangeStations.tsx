@@ -1,42 +1,61 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Modal } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {StationCard} from "@/components/common/settings/change-stations/StationCard";
 import { GRAY, WHITE } from "@/context/style/colorTheme";
 
+type StationItem = {
+  stationLineName: string,
+  stationName: string,
+  stationDirection: string[]
+}
+
 export const ChangeStations = () => {
-  const stationsData: {stationLinename: string, stationName: string, stationDirection: string[]}[] = [{
-    stationLinename: "谷町線",
+  const stationsList: StationItem[] = [{
+    stationLineName: "谷町線",
     stationName: "東梅田駅",
     stationDirection: ["八尾南方面", "大日方面"]
   }, {
-    stationLinename: "御堂筋線",
+    stationLineName: "御堂筋線",
     stationName: "梅田駅",
     stationDirection: ["なかもず方面", "千里中央方面"]
   },{
-    stationLinename: "谷町線",
+    stationLineName: "谷町線",
     stationName: "東梅田駅",
     stationDirection: ["八尾南方面", "大日方面"]
   },{
-    stationLinename: "谷町線",
+    stationLineName: "谷町線",
     stationName: "東梅田駅",
     stationDirection: ["八尾南方面", "大日方面"]
+  },{
+    stationLineName: "千日前線",
+    stationName: "なんば駅",
+    stationDirection: ["桜川方面", "京橋方面"]
   }]
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [stationName, setStationName] = useState<string>()
+
+  useEffect(() => {
+    console.log(stationName);
+    // TODO：APIを実行する
+  },[stationName])
 
   return(
     <>
       <SearchField>
         <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
-        <SearchInput placeholder="駅名を入力してください" type="search" />
+        <SearchInput placeholder="駅名を入力してください" type="search" 
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setStationName(e.target.value);}} 
+        />
       </SearchField>
       <StationCardList>
-        {stationsData.map((data, index) => {
-          return <StationCard key={index} StationLineName={data.stationLinename} StationName={data.stationName} onClickStation={handleOpen}/>
+        {stationsList.map((data, index) => {
+          return <StationCard key={index} StationLineName={data.stationLineName} StationName={data.stationName} onClickStation={handleOpen}/>
         })}
       </StationCardList>
       <Modal

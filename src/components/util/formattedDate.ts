@@ -1,18 +1,11 @@
 export const formattedDate = (date: Date, status?: 'monthsDays'): string => {
   const dayOfWeek: string[] = ['日', '月', '火', '水', '木', '金', '土'];
 
-  let year: string = date.getFullYear().toString();
-  let month: string = (date.getMonth() + 1).toString();
-  let day: string = date.getDate().toString();
-  let hours: string = date.getHours().toString();
-  let minutes: string = date.getMinutes().toString();
-
-  // getMonth()の戻り値は0が年の最初の月を示すので+1をしている
-  if (month.length === 1) month = month.padStart(2, '0');
-  if (year.length === 1) year = year.padStart(2, '0');
-  if (day.length === 1) day = day.padStart(2, '0');
-  if (hours.length === 1) hours = hours.padStart(2, '0');
-  if (minutes.length === 1) minutes = minutes.padStart(2, '0');
+  const year: string = date.getFullYear().toString().padStart(2, '0');
+  const month: string = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day: string = date.getDate().toString().padStart(2, '0');
+  const hours: string = date.getHours().toString().padStart(2, '0');
+  const minutes: string = date.getMinutes().toString().padStart(2, '0');
 
   if (status === 'monthsDays') {
     const formattedDate: string = hours + ':' + minutes;

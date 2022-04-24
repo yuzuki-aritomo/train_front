@@ -4,15 +4,17 @@ import { calcTimeDelta } from '@/components/util/calcTimeDelta';
 import { formattedDate } from '@/components/util/formattedDate';
 import { BLUE } from '@/context/style/colorTheme';
 
+export type CountDownType = {
+  minutes: string;
+  seconds: string;
+};
+
 type MainCountdownProps = {
   departureTime: Date;
 };
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
-  const [countdown, setCountdown] = useState<{
-    minutes: string;
-    seconds: string;
-  }>();
+  const [countdown, setCountdown] = useState<CountDownType>();
 
   useEffect(() => {
     const timer: NodeJS.Timeout = setInterval(() => {

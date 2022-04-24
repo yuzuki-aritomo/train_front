@@ -4,19 +4,24 @@ import {StationCard} from "@/components/common/settings/change-stations/StationC
 import { GRAY } from "@/context/style/colorTheme";
 
 export const ChangeStations = () => {
-  const stationsData: {stationLinename: string, stationName: string}[] = [{
+  const stationsData: {stationLinename: string, stationName: string, stationDirection: string[]}[] = [{
     stationLinename: "谷町線",
-    stationName: "東梅田駅"
+    stationName: "東梅田駅",
+    stationDirection: ["八尾南方面", "大日方面"]
   }, {
     stationLinename: "御堂筋線",
-    stationName: "梅田駅"
+    stationName: "梅田駅",
+    stationDirection: ["なかもず方面", "千里中央方面"]
   },{
     stationLinename: "谷町線",
-    stationName: "東梅田駅"
+    stationName: "東梅田駅",
+    stationDirection: ["八尾南方面", "大日方面"]
   },{
     stationLinename: "谷町線",
-    stationName: "東梅田駅"
+    stationName: "東梅田駅",
+    stationDirection: ["八尾南方面", "大日方面"]
   }]
+  
   return(
     <>
       <SearchField>

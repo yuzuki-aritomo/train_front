@@ -1,26 +1,7 @@
-#app {
-  height: 100%;
-}
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
 .swiper {
   width: 100%;
-  background-color: #000;
+  height: 80vh !important;
   position: fixed !important;
-  height: 50vh !important;
 }
 
 .swiper-slide {
@@ -52,19 +33,12 @@ body {
 
 .swiper-slide {
   width: 60%;
-}
-
-.swiper-slide:nth-child(2n) {
-  width: 40%;
-}
-
-.swiper-slide:nth-child(3n) {
-  width: 20%;
+  background-color: #eee;
 }
 
 .swiper-wrapper {
   display: flex;
   /* justify-content: center; */
   align-items: center;
-  height: 50vh !important;
+  height: auto !important;
 }

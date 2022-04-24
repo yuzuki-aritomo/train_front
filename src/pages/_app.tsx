@@ -1,10 +1,10 @@
 import type { AppProps } from 'next/app';
 import styled from 'styled-components';
-// import '@/context/style/globalStyle.css';
-//import 'destyle.css';
-import { BLACK, WHITE } from '@/context/style/colorTheme';
+import '@/context/style/globalStyle.css';
+import '@/context/style/swiperStyle.css';
 import 'swiper/css/bundle';
-import '@/context/style/style.css';
+import 'destyle.css';
+import { BLACK, WHITE } from '@/context/style/colorTheme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -29,11 +29,10 @@ export const Home = () => {
   return (
     <Swiper
       centeredSlides={true}
-      className="mySwiper"
       direction="vertical"
       modules={[Pagination]}
       pagination={{
-        clickable: true,
+        clickable: false,
       }}
       slidesPerView={'auto'}
       spaceBetween={30}

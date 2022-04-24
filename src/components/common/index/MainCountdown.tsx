@@ -8,12 +8,43 @@ type MainCountdownProps = {
 };
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
-  //const [currentTime, setCurrentTime] = useState<Date>();
+  const [countdown, setCountdown] = useState<{
+    minutes: number;
+    seconds: number;
+  }>();
+
+  useEffect(() => {
+    try {
+      const timer: NodeJS.Timeout = setInterval(() => {
+        const currentTime: number = Date.now();
+        const diff: number =
+          Math.abs(props.departureTime.getTime() - currentTime) / 1000;
+
+        const hours = Math.floor(((diff / 3600) % 24) * 60);
+        const updatedMinutes = Math.floor((diff / 60) % 60) + hours;
+
+        const updatedSeconds = Math.floor(diff % 60);
+
+        setCountdown({
+          minutes: updatedMinutes,
+          seconds: updatedSeconds,
+        });
+      }, 1000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>
-      <Countdown>10:30</Countdown>
+      <Countdown>
+        {countdown?.minutes}:{countdown?.seconds}
+      </Countdown>
       <DepartureTime>
         {formattedDate(props.departureTime, 'monthsDays')} <span>発</span>
       </DepartureTime>
@@ -26,7 +57,7 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 60vw;
+  width: auto;
   height: 60vw;
   max-width: 400px;
   max-height: 400px;

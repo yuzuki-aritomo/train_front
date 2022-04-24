@@ -11,10 +11,8 @@ type CountInfo = {
 };
 
 export const Home = () => {
-  const dead = new Date(2021, 7 - 1, 19, 18, 1);
-
-  const createDate = (hours: number, minutes: number) => {
-    const newDate: Date = new Date(2021, 7 - 1, 19, hours, minutes);
+  const createDate = (hours: number, minutes: number): Date => {
+    const newDate: Date = new Date(2022, 4 - 1, 25, hours, minutes);
     return newDate;
   };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { calcTimeDelta } from '@/components/util/calcTimeDelta';
 import { formattedDate } from '@/components/util/formattedDate';
 import { BLUE } from '@/context/style/colorTheme';
 
@@ -9,34 +10,21 @@ type MainCountdownProps = {
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
   const [countdown, setCountdown] = useState<{
-    minutes: number;
-    seconds: number;
+    minutes: string;
+    seconds: string;
   }>();
 
   useEffect(() => {
-    try {
-      const timer: NodeJS.Timeout = setInterval(() => {
-        const currentTime: number = Date.now();
-        const diff: number =
-          Math.abs(props.departureTime.getTime() - currentTime) / 1000;
+    const timer: NodeJS.Timeout = setInterval(() => {
+      calcTimeDelta({
+        departureTime: props.departureTime,
+        setCountdown: setCountdown,
+      });
+    }, 1000);
 
-        const hours = Math.floor(((diff / 3600) % 24) * 60);
-        const updatedMinutes = Math.floor((diff / 60) % 60) + hours;
-
-        const updatedSeconds = Math.floor(diff % 60);
-
-        setCountdown({
-          minutes: updatedMinutes,
-          seconds: updatedSeconds,
-        });
-      }, 1000);
-
-      return () => {
-        clearInterval(timer);
-      };
-    } catch (error) {
-      console.log(error);
-    }
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return (

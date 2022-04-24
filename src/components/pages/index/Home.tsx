@@ -27,26 +27,24 @@ export const Home = () => {
   ];
 
   return (
-    <>
-      <Swiper
-        centeredSlides={true}
-        className="mySwiper"
-        direction="vertical"
-        modules={[Pagination]}
-        pagination={{
-          clickable: true,
-        }}
-        slidesPerView={'auto'}
-        spaceBetween={30}
-      >
-        {countInfoList.map((info, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <MainCountdown departureTime={info.departureTime} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </>
+    <Swiper
+      centeredSlides={true}
+      className="mySwiper"
+      direction="vertical"
+      modules={[Pagination]}
+      pagination={{
+        clickable: true,
+      }}
+      slidesPerView={'auto'}
+      spaceBetween={30}
+    >
+      {countInfoList.map((info, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <MainCountdown departureTime={info.departureTime} />
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
   );
 };

@@ -1,17 +1,21 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { formattedDate } from '@/components/util/formattedDate';
 import { BLUE } from '@/context/style/colorTheme';
 
 type MainCountdownProps = {
-  departureTime: string;
+  departureTime: Date;
 };
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
+  //const [currentTime, setCurrentTime] = useState<Date>();
+
   return (
     <CountdownWrapper>
       <Description>出発時刻まで残り...</Description>
       <Countdown>10:30</Countdown>
       <DepartureTime>
-        {props.departureTime} <span>発</span>
+        {formattedDate(props.departureTime, 'monthsDays')} <span>発</span>
       </DepartureTime>
     </CountdownWrapper>
   );

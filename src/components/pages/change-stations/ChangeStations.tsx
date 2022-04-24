@@ -1,36 +1,93 @@
 import SearchIcon from '@mui/icons-material/Search';
-import styled from "styled-components";
-import {StationCard} from "@/components/common/settings/change-stations/StationCard";
-import { GRAY } from "@/context/style/colorTheme";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { StationCard } from '@/components/common/settings/change-stations/StationCard';
+import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
+import { GRAY } from '@/context/style/colorTheme';
+
+export type StationType = {
+  stationLineName: string;
+  stationName: string;
+  stationDirection: string[];
+};
 
 export const ChangeStations = () => {
-  const stationsData: {stationLinename: string, stationName: string}[] = [{
-    stationLinename: "谷町線",
-    stationName: "東梅田駅"
-  }, {
-    stationLinename: "御堂筋線",
-    stationName: "梅田駅"
-  },{
-    stationLinename: "谷町線",
-    stationName: "東梅田駅"
-  },{
-    stationLinename: "谷町線",
-    stationName: "東梅田駅"
-  }]
-  return(
+  const stationsList: StationType[] = [
+    {
+      stationLineName: '谷町線',
+      stationName: '東梅田駅',
+      stationDirection: ['八尾南方面', '大日方面'],
+    },
+    {
+      stationLineName: '御堂筋線',
+      stationName: '梅田駅',
+      stationDirection: ['なかもず方面', '千里中央方面'],
+    },
+    {
+      stationLineName: '谷町線',
+      stationName: '東梅田駅',
+      stationDirection: ['八尾南方面', '大日方面'],
+    },
+    {
+      stationLineName: '谷町線',
+      stationName: '東梅田駅',
+      stationDirection: ['八尾南方面', '大日方面'],
+    },
+    {
+      stationLineName: '千日前線',
+      stationName: 'なんば駅',
+      stationDirection: ['桜川方面', '京橋方面'],
+    },
+  ];
+
+  const [open, setOpen] = useState(false);
+  const handleModalOpen = () => setOpen(true);
+  const handleModalClose = () => setOpen(false);
+
+  const [stationName, setStationName] = useState<string>();
+  const [selectedStationDir, setSelectedStationDir] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log(stationName);
+    // TODO：APIを実行する
+  }, [stationName]);
+
+  return (
     <>
       <SearchField>
-        <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
-        <SearchInput placeholder="駅名を入力してください" type="search" />
+        <SearchIcon
+          sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }}
+        />
+        <SearchInput
+          placeholder="駅名を入力してください"
+          type="search"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setStationName(e.target.value);
+          }}
+        />
       </SearchField>
       <StationCardList>
-        {stationsData.map((data, index) => {
-          return <StationCard key={index} StationLineName={data.stationLinename} StationName={data.stationName} />
+        {stationsList.map((data, index) => {
+          return (
+            <StationCard
+              key={index}
+              Station={data}
+              onClickStation={() => {
+                handleModalOpen();
+                setSelectedStationDir(data.stationDirection);
+              }}
+            />
+          );
         })}
       </StationCardList>
+      <StationDirectionModal
+        handleModalClose={handleModalClose}
+        isModalOpen={open}
+        selectedStationDir={selectedStationDir}
+      />
     </>
-  )
-}
+  );
+};
 
 const SearchField = styled.div`
   width: 94vw;
@@ -46,15 +103,15 @@ const SearchField = styled.div`
 const SearchInput = styled.input`
   width: 80%;
   height: 100%;
-  backgroundColor: ${GRAY};
+  backgroundcolor: ${GRAY};
   border: 0;
   padding: 10px;
   :focus {
     outline: 0ch;
-  };
+  }
 `;
 
 const StationCardList = styled.div`
   text-align: center;
-  border-top: 1px solid ${GRAY}
+  border-top: 1px solid ${GRAY};
 `;

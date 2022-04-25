@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
@@ -11,34 +12,13 @@ export type StationType = {
   stationDirection: string[];
 };
 
+// type ResponseStationType = {
+//   staion_name: string,
+//   station_name_k: string,
+// };
+
 export const ChangeStations = () => {
-  const stationsList: StationType[] = [
-    {
-      stationLineName: '谷町線',
-      stationName: '東梅田駅',
-      stationDirection: ['八尾南方面', '大日方面'],
-    },
-    {
-      stationLineName: '御堂筋線',
-      stationName: '梅田駅',
-      stationDirection: ['なかもず方面', '千里中央方面'],
-    },
-    {
-      stationLineName: '谷町線',
-      stationName: '東梅田駅',
-      stationDirection: ['八尾南方面', '大日方面'],
-    },
-    {
-      stationLineName: '谷町線',
-      stationName: '東梅田駅',
-      stationDirection: ['八尾南方面', '大日方面'],
-    },
-    {
-      stationLineName: '千日前線',
-      stationName: 'なんば駅',
-      stationDirection: ['桜川方面', '京橋方面'],
-    },
-  ];
+  let stationsList: StationType[] = [];
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
@@ -50,6 +30,26 @@ export const ChangeStations = () => {
   useEffect(() => {
     console.log(stationName);
     // TODO：APIを実行する
+    axios
+      .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
+      .then((res) => {
+        console.log('成功');
+        console.log(res.data.data);
+        stationsList = res.data.data;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // const responseData = res.data.data;
+        // stationsList = responseData.map((data: ResponseStationType) => {
+        //   const stationData = {
+        //     stationName: {data.station_name},
+        //     stationLineName: {data.station_name_k},
+        //     StationDirection: [],
+        //   };
+        //   return stationData
+        // });
+      })
+      .catch(() => {
+        console.log('error');
+      });
   }, [stationName]);
 
   return (

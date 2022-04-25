@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
+import { SettingHeader } from '@/components/common/settings/SettingHeader';
 import { GRAY } from '@/context/style/colorTheme';
 
 export type StationType = {
@@ -54,6 +55,7 @@ export const ChangeStations = () => {
 
   return (
     <>
+      <SettingHeader pageName="駅を変更" />
       <SearchField>
         <SearchIcon
           sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }}

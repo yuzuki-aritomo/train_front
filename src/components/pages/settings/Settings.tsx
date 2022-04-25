@@ -1,23 +1,27 @@
-import styled from "styled-components";
-import {SettingListItem} from "@/components/common/settings/SettingListItem";
-import { GRAY, WHITE } from "@/context/style/colorTheme";
+import styled from 'styled-components';
+import { IconMenu } from '@/components/common/IconMenu';
+import { SettingListItem } from '@/components/common/settings/SettingListItem';
+import { GRAY, WHITE } from '@/context/style/colorTheme';
 
 export const Settings = () => {
   return (
-    <SettingContainer>
-      <SettingListItemsWrapper>
-        <SettingListItem settingName="駅を変更" />
-        <SettingListItem isLastChild settingName="パスワードを変更" />
-      </SettingListItemsWrapper>
-      <SettingListItemsWrapper>
-        <SettingListItem settingName="利用規約" />
-        <SettingListItem settingName="プライバシーポリシー" />
-        <SettingListItem isLastChild settingName="お問い合わせ" />
-      </SettingListItemsWrapper>
-      <SettingListItemsWrapper>
-        <SettingListItem isLastChild settingName="ログアウト" />
-      </SettingListItemsWrapper>
-    </SettingContainer>
+    <>
+      <SettingContainer>
+        <SettingListItemsWrapper>
+          <SettingListItem settingName="駅を変更" />
+          <SettingListItem isLastChild settingName="パスワードを変更" />
+        </SettingListItemsWrapper>
+        <SettingListItemsWrapper>
+          <SettingListItem settingName="利用規約" />
+          <SettingListItem settingName="プライバシーポリシー" />
+          <SettingListItem isLastChild settingName="お問い合わせ" />
+        </SettingListItemsWrapper>
+        <SettingListItemsWrapper>
+          <SettingListItem isLastChild settingName="ログアウト" />
+        </SettingListItemsWrapper>
+      </SettingContainer>
+      <IconMenu isTopPage={false} />
+    </>
   );
 };
 

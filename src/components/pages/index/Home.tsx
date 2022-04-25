@@ -50,7 +50,7 @@ export const Home = () => {
           );
         })}
       </Swiper>
-      <IconMenu />
+      <IconMenu isTopPage={true} />
     </>
   );
 };

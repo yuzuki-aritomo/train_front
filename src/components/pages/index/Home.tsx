@@ -143,7 +143,7 @@ export const Home = () => {
         {stationsInfo[1] && <TabPanel activeNum={1} stationInfo={stationsInfo[1]} />}
         {stationsInfo[2] && <TabPanel activeNum={2} stationInfo={stationsInfo[2]} />}
       </HomeWrapper>
-      <IconMenu isTopPage={true} />
+      <IconMenu isHomePage={true} />
     </>
   );
 };

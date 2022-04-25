@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { BLACK, WHITE } from '@/context/style/colorTheme';
 
 type IconMenuType = {
-  isTopPage: boolean;
+  isHomePage: boolean;
 };
 
 export const IconMenu: React.FC<IconMenuType> = (props) => {
@@ -15,10 +15,10 @@ export const IconMenu: React.FC<IconMenuType> = (props) => {
   return (
     <IconMenuBox
       onClick={() => {
-        props.isTopPage ? router.push('/settings') : router.push('/');
+        props.isHomePage ? router.push('/settings') : router.push('/');
       }}
     >
-      {props.isTopPage ? (
+      {props.isHomePage ? (
         <SettingsOutlinedIcon style={{ color: BLACK, fontSize: '3rem' }} />
       ) : (
         <HomeOutlinedIcon style={{ color: BLACK, fontSize: '3rem' }} />
@@ -39,4 +39,5 @@ const IconMenuBox = styled.button`
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: 100;
 `;

@@ -20,7 +20,7 @@ export const Settings = () => {
           <SettingListItem isLastChild settingName="ログアウト" />
         </SettingListItemsWrapper>
       </SettingContainer>
-      <IconMenu isTopPage={false} />
+      <IconMenu isHomePage={false} />
     </>
   );
 };

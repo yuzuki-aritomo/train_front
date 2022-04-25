@@ -8,17 +8,6 @@ import 'swiper/css/pagination';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
 
-type StationsInfoListType = {
-  departureTimes: {
-    departureTime: Date;
-    hasDeparted: boolean;
-  }[][];
-  names: {
-    station: string;
-    line: string;
-  }[];
-};
-
 type StationsInfoType = {
   departureTimes: {
     departureTime: Date;
@@ -87,34 +76,30 @@ export const Home = () => {
   ];
 
   // flagは駅コードになる
-  const [displayFlag, setDisplayFlag] = useState<number>(0);
   const [activeNum, setActiveNum] = useState<number>(1);
 
   const TabPanel: React.FC<{ index: number }> = (props) => {
-    if (displayFlag === props.index) {
-      return (
-        <Swiper
-          centeredSlides={true}
-          direction="vertical"
-          modules={[Pagination]}
-          pagination={{
-            clickable: false,
-          }}
-          slidesPerView={'auto'}
-          spaceBetween={30}
-        >
-          {stationsInfo[props.index]?.departureTimes?.map((info, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <MainCountdown departureTime={info.departureTime} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      );
-    } else {
-      return null;
-    }
+    if (activeNum !== props.index) return null;
+    return (
+      <Swiper
+        centeredSlides={true}
+        direction="vertical"
+        modules={[Pagination]}
+        pagination={{
+          clickable: false,
+        }}
+        slidesPerView={'auto'}
+        spaceBetween={30}
+      >
+        {stationsInfo[props.index]?.departureTimes?.map((info, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <MainCountdown departureTime={info.departureTime} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    );
   };
 
   const Tabs: React.FC<{ index: number }> = (props) => {
@@ -122,7 +107,6 @@ export const Home = () => {
       <div
         style={{ flexBasis: '33%' }}
         onClick={() => {
-          setDisplayFlag(props.index);
           setActiveNum(props.index);
         }}
       >
@@ -142,25 +126,16 @@ export const Home = () => {
   };
 
   return (
-    <>
-      <div
-        style={{
-          position: 'fixed',
-          zIndex: 100,
-          height: '10vh',
-          width: '100%',
-        }}
-      >
-        <StationsWrapper>
-          <Tabs index={0} />
-          <Tabs index={1} />
-          <Tabs index={2} />
-        </StationsWrapper>
-        <TabPanel index={0} />
-        <TabPanel index={1} />
-        <TabPanel index={2} />
-      </div>
-    </>
+    <HomeWrapper>
+      <StationsWrapper>
+        <Tabs index={0} />
+        <Tabs index={1} />
+        <Tabs index={2} />
+      </StationsWrapper>
+      <TabPanel index={0} />
+      <TabPanel index={1} />
+      <TabPanel index={2} />
+    </HomeWrapper>
   );
 };
 
@@ -173,4 +148,11 @@ const StationsWrapper = styled.div`
   padding: 20px 10px;
   background-color: #f0f5fb;
   filter: drop-shadow(0px 1px 3px rgba(0, 24, 88, 0.15));
+`;
+
+const HomeWrapper = styled.div`
+  position: fixed;
+  z-index: 100;
+  height: 10vh;
+  width: 100%;
 `;

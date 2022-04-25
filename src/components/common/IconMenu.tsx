@@ -1,5 +1,6 @@
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { NextRouter, useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import { BLACK, WHITE } from '@/context/style/colorTheme';
@@ -9,8 +10,14 @@ type IconMenuType = {
 };
 
 export const IconMenu: React.FC<IconMenuType> = (props) => {
+  const router: NextRouter = useRouter();
+
   return (
-    <IconMenuBox>
+    <IconMenuBox
+      onClick={() => {
+        props.isTopPage ? router.push('/settings') : router.push('/');
+      }}
+    >
       {props.isTopPage ? (
         <SettingsOutlinedIcon style={{ color: BLACK, fontSize: '3rem' }} />
       ) : (
@@ -20,7 +27,7 @@ export const IconMenu: React.FC<IconMenuType> = (props) => {
   );
 };
 
-const IconMenuBox = styled.div`
+const IconMenuBox = styled.button`
   width: 50px;
   height: 50px;
   top: 85%;

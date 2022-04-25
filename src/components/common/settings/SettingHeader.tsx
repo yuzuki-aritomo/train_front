@@ -24,7 +24,6 @@ export const SettingHeader: React.FC<SettingHeaderProps> = (props) => {
 };
 
 const SettingHeaderWrapper = styled.div`
-  width: 100vw;
   height: 48px;
   background-color: ${WHITE};
   margin-bottom: 20px;

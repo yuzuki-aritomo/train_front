@@ -19,6 +19,15 @@ type StationsInfoListType = {
   }[];
 };
 
+type StationsInfoType = {
+  departureTimes: {
+    departureTime: Date;
+    hasDeparted: boolean;
+  }[];
+  stationName: string;
+  lineName: string;
+};
+
 export const Home = () => {
   // demo deta
   const createDate = (days: number, hours: number, minutes: number): Date => {
@@ -26,10 +35,9 @@ export const Home = () => {
     return newDate;
   };
 
-  // demo deta
-  const stationsInfoList: StationsInfoListType = {
-    departureTimes: [
-      [
+  const stationsInfo: StationsInfoType[] = [
+    {
+      departureTimes: [
         { departureTime: createDate(25, 9, 1), hasDeparted: true },
         { departureTime: createDate(25, 10, 1), hasDeparted: false },
         { departureTime: createDate(25, 11, 1), hasDeparted: false },
@@ -41,7 +49,11 @@ export const Home = () => {
         { departureTime: createDate(25, 17, 1), hasDeparted: false },
         { departureTime: createDate(25, 18, 1), hasDeparted: false },
       ],
-      [
+      stationName: '梅田駅',
+      lineName: '御堂筋線',
+    },
+    {
+      departureTimes: [
         { departureTime: createDate(26, 19, 1), hasDeparted: true },
         { departureTime: createDate(26, 20, 1), hasDeparted: false },
         { departureTime: createDate(26, 21, 1), hasDeparted: false },
@@ -53,7 +65,11 @@ export const Home = () => {
         { departureTime: createDate(26, 3, 1), hasDeparted: false },
         { departureTime: createDate(26, 4, 1), hasDeparted: false },
       ],
-      [
+      stationName: '京都駅',
+      lineName: 'JR京都線',
+    },
+    {
+      departureTimes: [
         { departureTime: createDate(27, 5, 1), hasDeparted: true },
         { departureTime: createDate(27, 6, 1), hasDeparted: false },
         { departureTime: createDate(27, 7, 1), hasDeparted: false },
@@ -65,22 +81,10 @@ export const Home = () => {
         { departureTime: createDate(27, 13, 1), hasDeparted: false },
         { departureTime: createDate(27, 14, 1), hasDeparted: false },
       ],
-    ],
-    names: [
-      {
-        station: '梅田駅',
-        line: '御堂筋線',
-      },
-      {
-        station: '京都駅',
-        line: 'JR京都線',
-      },
-      {
-        station: '東梅田駅',
-        line: '谷町線',
-      },
-    ],
-  };
+      stationName: '東梅田駅',
+      lineName: '谷町線',
+    },
+  ];
 
   // flagは駅コードになる
   const [displayFlag, setDisplayFlag] = useState<number>(0);
@@ -99,7 +103,7 @@ export const Home = () => {
           slidesPerView={'auto'}
           spaceBetween={30}
         >
-          {stationsInfoList?.departureTimes[props.index]?.map((info, index) => {
+          {stationsInfo[props.index]?.departureTimes?.map((info, index) => {
             return (
               <SwiperSlide key={index}>
                 <MainCountdown departureTime={info.departureTime} />
@@ -124,13 +128,13 @@ export const Home = () => {
       >
         {activeNum === props.index ? (
           <SelectedStation
-            selectedStation={stationsInfoList.names[props.index]?.station}
-            selectedStationLine={stationsInfoList.names[props.index]?.line}
+            selectedStation={stationsInfo[props.index]?.stationName}
+            selectedStationLine={stationsInfo[props.index]?.lineName}
           />
         ) : (
           <OtherStation
-            otherStation={stationsInfoList.names[props.index]?.station}
-            otherStationLine={stationsInfoList.names[props.index]?.line}
+            otherStation={stationsInfo[props.index]?.stationName}
+            otherStationLine={stationsInfo[props.index]?.lineName}
           />
         )}
       </div>

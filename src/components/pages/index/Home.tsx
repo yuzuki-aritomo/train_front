@@ -112,13 +112,13 @@ export const Home = () => {
       >
         {activeNum === props.index ? (
           <SelectedStation
-            selectedStation={stationsInfo[props.index]?.stationName}
-            selectedStationLine={stationsInfo[props.index]?.lineName}
+            lineName={stationsInfo[props.index]?.lineName}
+            stationName={stationsInfo[props.index]?.stationName}
           />
         ) : (
           <OtherStation
-            otherStation={stationsInfo[props.index]?.stationName}
-            otherStationLine={stationsInfo[props.index]?.lineName}
+            lineName={stationsInfo[props.index]?.lineName}
+            stationName={stationsInfo[props.index]?.stationName}
           />
         )}
       </div>

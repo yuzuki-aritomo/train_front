@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { BLACK } from '@/context/style/colorTheme';
 
 type Props = {
-  otherStation?: string;
-  otherStationLine?: string;
+  stationName?: string;
+  lineName?: string;
 };
 
 export const OtherStation: React.FC<Props> = (props) => {
   return (
     <StationWrapper>
-      <StationName>{props.otherStation}</StationName>
-      <StationLineName>{props.otherStationLine}</StationLineName>
+      <StationName>{props.stationName}</StationName>
+      <StationLineName>{props.lineName}</StationLineName>
     </StationWrapper>
   );
 };

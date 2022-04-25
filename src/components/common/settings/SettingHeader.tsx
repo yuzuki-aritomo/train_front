@@ -11,7 +11,7 @@ export const SettingHeader: React.FC<SettingHeaderProps> = (props) => {
   const router: NextRouter = useRouter();
 
   return (
-    <SettingHeadeerWrapper>
+    <SettingHeaderWrapper>
       <ArrowBackIosNewIcon
         sx={{ width: '35px', margin: '0 0 0 10px' }}
         onClick={() => {
@@ -19,11 +19,11 @@ export const SettingHeader: React.FC<SettingHeaderProps> = (props) => {
         }}
       />
       <SettingName>{props.pageName}</SettingName>
-    </SettingHeadeerWrapper>
+    </SettingHeaderWrapper>
   );
 };
 
-const SettingHeadeerWrapper = styled.div`
+const SettingHeaderWrapper = styled.div`
   width: 100vw;
   height: 48px;
   background-color: ${WHITE};

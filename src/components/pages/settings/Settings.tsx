@@ -9,16 +9,16 @@ export const Settings = () => {
     <SettingContainer>
       <SettingHeader pageName="設定" />
       <SettingListItemsWrapper>
-        <SettingListItem settingName="駅を変更" settingRoute="/settings/change-stations" />
-        <SettingListItem isLastChild settingName="パスワードを変更" settingRoute="/" />
+        <SettingListItem name="駅を変更" route="/settings/change-stations" />
+        <SettingListItem isLastChild name="パスワードを変更" route="/" />
       </SettingListItemsWrapper>
       <SettingListItemsWrapper>
-        <SettingListItem settingName="利用規約" settingRoute="/" />
-        <SettingListItem settingName="プライバシーポリシー" settingRoute="/" />
-        <SettingListItem isLastChild settingName="お問い合わせ" settingRoute="/" />
+        <SettingListItem name="利用規約" route="/" />
+        <SettingListItem name="プライバシーポリシー" route="/" />
+        <SettingListItem isLastChild name="お問い合わせ" route="/" />
       </SettingListItemsWrapper>
       <SettingListItemsWrapper>
-        <SettingListItem isLastChild settingName="ログアウト" settingRoute="/" />
+        <SettingListItem isLastChild name="ログアウト" route="/" />
       </SettingListItemsWrapper>
       <IconMenu isHomePage={false} />
     </SettingContainer>

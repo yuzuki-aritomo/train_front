@@ -1,24 +1,27 @@
-import styled from "styled-components";
-import { BLACK, GRAY } from "@/context/style/colorTheme";
+import styled from 'styled-components';
+import type { StationType } from '@/components/pages/change-stations/ChangeStations';
+import { BLACK, GRAY } from '@/context/style/colorTheme';
 
 type StationCardProps = {
-  StationName: string,
-  StationLineName: string
-}
+  Station: StationType;
+  onClickStation: () => void;
+};
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
-  return(
-    <StationCardWrapper>
-      <div>
-        <StationName>{props.StationName}</StationName>
-        <StationLineName>{props.StationLineName}</StationLineName>
-      </div>
-      <StationRegisterContainer>
-        登録
-      </StationRegisterContainer>
-    </StationCardWrapper>
-  )
-}
+  return (
+    <>
+      <StationCardWrapper>
+        <div>
+          <StationName>{props.Station.stationName}</StationName>
+          <StationLineName>{props.Station.stationLineName}</StationLineName>
+        </div>
+        <StationRegisterContainer onClick={props.onClickStation}>
+          選択
+        </StationRegisterContainer>
+      </StationCardWrapper>
+    </>
+  );
+};
 
 const StationCardWrapper = styled.div`
   width: 96vw;
@@ -53,7 +56,7 @@ const StationLineName = styled.p`
   text-overflow: ellipsis;
 `;
 
-const StationRegisterContainer = styled.p`
+const StationRegisterContainer = styled.button`
   width: 18vw;
   color: white;
   font-size: 14px;

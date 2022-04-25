@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { IconMenu } from '@/components/common/IconMenu';
 import { MainCountdown } from '@/components/common/index/MainCountdown';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -131,16 +132,19 @@ export const Home = () => {
   };
 
   return (
-    <HomeWrapper>
-      <StationsWrapper>
-        {stationsInfo[0] && <Tabs activeNum={0} stationInfo={stationsInfo[0]} />}
-        {stationsInfo[1] && <Tabs activeNum={1} stationInfo={stationsInfo[1]} />}
-        {stationsInfo[2] && <Tabs activeNum={2} stationInfo={stationsInfo[2]} />}
-      </StationsWrapper>
-      {stationsInfo[0] && <TabPanel activeNum={0} stationInfo={stationsInfo[0]} />}
-      {stationsInfo[1] && <TabPanel activeNum={1} stationInfo={stationsInfo[1]} />}
-      {stationsInfo[2] && <TabPanel activeNum={2} stationInfo={stationsInfo[2]} />}
-    </HomeWrapper>
+    <>
+      <HomeWrapper>
+        <StationsWrapper>
+          {stationsInfo[0] && <Tabs activeNum={0} stationInfo={stationsInfo[0]} />}
+          {stationsInfo[1] && <Tabs activeNum={1} stationInfo={stationsInfo[1]} />}
+          {stationsInfo[2] && <Tabs activeNum={2} stationInfo={stationsInfo[2]} />}
+        </StationsWrapper>
+        {stationsInfo[0] && <TabPanel activeNum={0} stationInfo={stationsInfo[0]} />}
+        {stationsInfo[1] && <TabPanel activeNum={1} stationInfo={stationsInfo[1]} />}
+        {stationsInfo[2] && <TabPanel activeNum={2} stationInfo={stationsInfo[2]} />}
+      </HomeWrapper>
+      <IconMenu isHomePage={true} />
+    </>
   );
 };
 

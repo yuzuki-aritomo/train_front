@@ -20,10 +20,10 @@ const StationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  max-width: 40%;
+  width: 100%;
   min-width: 100px;
   margin: -10px 0;
-  padding: 10px;
+  padding: 20px 10px;
   border: 7px solid ${BLUE};
   border-radius: 24px;
   background-color: #fff;
@@ -34,7 +34,7 @@ const StationName = styled.p`
   font-size: 18px;
   font-weight: bold;
   color: ${BLACK};
-  margin: 0;
+  margin-bottom: 5px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -45,8 +45,8 @@ const StationLineName = styled.p`
   width: 100%;
   color: ${BLUE};
   font-size: 14px;
-  margin: 0;
   text-align: center;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

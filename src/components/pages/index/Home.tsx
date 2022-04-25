@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { IconMenu } from '@/components/common/IconMenu';
 import { MainCountdown } from '@/components/common/index/MainCountdown';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -30,23 +31,26 @@ export const Home = () => {
   ];
 
   return (
-    <Swiper
-      centeredSlides={true}
-      direction="vertical"
-      modules={[Pagination]}
-      pagination={{
-        clickable: false,
-      }}
-      slidesPerView={'auto'}
-      spaceBetween={30}
-    >
-      {countInfoList.map((info, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <MainCountdown departureTime={info.departureTime} />
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+    <>
+      <Swiper
+        centeredSlides={true}
+        direction="vertical"
+        modules={[Pagination]}
+        pagination={{
+          clickable: false,
+        }}
+        slidesPerView={'auto'}
+        spaceBetween={30}
+      >
+        {countInfoList.map((info, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <MainCountdown departureTime={info.departureTime} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      <IconMenu />
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
@@ -50,6 +51,15 @@ export const ChangeStations = () => {
   useEffect(() => {
     console.log(stationName);
     // TODO：APIを実行する
+    axios
+      .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
+      .then((res) => {
+        console.log('成功');
+        console.log(res);
+      })
+      .catch(() => {
+        console.log('error');
+      });
   }, [stationName]);
 
   return (

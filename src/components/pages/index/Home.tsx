@@ -17,6 +17,11 @@ type StationsInfoType = {
   lineName: string;
 };
 
+type TabType = {
+  stationInfo: StationsInfoType;
+  activeNum: number;
+};
+
 export const Home = () => {
   // demo deta
   const createDate = (days: number, hours: number, minutes: number): Date => {
@@ -78,8 +83,8 @@ export const Home = () => {
   // flagは駅コードになる
   const [activeNum, setActiveNum] = useState<number>(1);
 
-  const TabPanel: React.FC<{ index: number }> = (props) => {
-    if (activeNum !== props.index) return null;
+  const TabPanel: React.FC<TabType> = (props) => {
+    if (activeNum !== props.activeNum) return null;
     return (
       <Swiper
         centeredSlides={true}
@@ -91,7 +96,7 @@ export const Home = () => {
         slidesPerView={'auto'}
         spaceBetween={30}
       >
-        {stationsInfo[props.index]?.departureTimes?.map((info, index) => {
+        {props.stationInfo.departureTimes.map((info, index) => {
           return (
             <SwiperSlide key={index}>
               <MainCountdown departureTime={info.departureTime} />
@@ -102,23 +107,23 @@ export const Home = () => {
     );
   };
 
-  const Tabs: React.FC<{ index: number }> = (props) => {
+  const Tabs: React.FC<TabType> = (props) => {
     return (
       <div
         style={{ flexBasis: '33%' }}
         onClick={() => {
-          setActiveNum(props.index);
+          setActiveNum(props.activeNum);
         }}
       >
-        {activeNum === props.index ? (
+        {activeNum === props.activeNum ? (
           <SelectedStation
-            lineName={stationsInfo[props.index]?.lineName}
-            stationName={stationsInfo[props.index]?.stationName}
+            lineName={props.stationInfo.lineName}
+            stationName={props.stationInfo.stationName}
           />
         ) : (
           <OtherStation
-            lineName={stationsInfo[props.index]?.lineName}
-            stationName={stationsInfo[props.index]?.stationName}
+            lineName={props.stationInfo.lineName}
+            stationName={props.stationInfo.stationName}
           />
         )}
       </div>
@@ -128,13 +133,13 @@ export const Home = () => {
   return (
     <HomeWrapper>
       <StationsWrapper>
-        <Tabs index={0} />
-        <Tabs index={1} />
-        <Tabs index={2} />
+        {stationsInfo[0] && <Tabs activeNum={0} stationInfo={stationsInfo[0]} />}
+        {stationsInfo[1] && <Tabs activeNum={1} stationInfo={stationsInfo[1]} />}
+        {stationsInfo[2] && <Tabs activeNum={2} stationInfo={stationsInfo[2]} />}
       </StationsWrapper>
-      <TabPanel index={0} />
-      <TabPanel index={1} />
-      <TabPanel index={2} />
+      {stationsInfo[0] && <TabPanel activeNum={0} stationInfo={stationsInfo[0]} />}
+      {stationsInfo[1] && <TabPanel activeNum={1} stationInfo={stationsInfo[1]} />}
+      {stationsInfo[2] && <TabPanel activeNum={2} stationInfo={stationsInfo[2]} />}
     </HomeWrapper>
   );
 };

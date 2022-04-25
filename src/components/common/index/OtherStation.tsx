@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { BLACK } from '@/context/style/colorTheme';
 
 type Props = {
-  otherStation: string;
-  otherStationLine: string;
+  otherStation?: string;
+  otherStationLine?: string;
 };
 
 export const OtherStation: React.FC<Props> = (props) => {

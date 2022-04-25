@@ -1,21 +1,38 @@
-import styled from "styled-components";
-import {SettingListItem} from "@/components/common/settings/SettingListItem";
-import { GRAY, WHITE } from "@/context/style/colorTheme";
+import styled from 'styled-components';
+import { SettingHeader } from '@/components/common/settings/SettingHeader';
+import { SettingListItem } from '@/components/common/settings/SettingListItem';
+import { GRAY, WHITE } from '@/context/style/colorTheme';
 
 export const Settings = () => {
   return (
     <SettingContainer>
+      <SettingHeader pageName="設定" />
       <SettingListItemsWrapper>
-        <SettingListItem settingName="駅を変更" />
-        <SettingListItem isLastChild settingName="パスワードを変更" />
+        <SettingListItem
+          settingName="駅を変更"
+          settingRoute="/settings/change-stations"
+        />
+        <SettingListItem
+          isLastChild
+          settingName="パスワードを変更"
+          settingRoute="/"
+        />
       </SettingListItemsWrapper>
       <SettingListItemsWrapper>
-        <SettingListItem settingName="利用規約" />
-        <SettingListItem settingName="プライバシーポリシー" />
-        <SettingListItem isLastChild settingName="お問い合わせ" />
+        <SettingListItem settingName="利用規約" settingRoute="/" />
+        <SettingListItem settingName="プライバシーポリシー" settingRoute="/" />
+        <SettingListItem
+          isLastChild
+          settingName="お問い合わせ"
+          settingRoute="/"
+        />
       </SettingListItemsWrapper>
       <SettingListItemsWrapper>
-        <SettingListItem isLastChild settingName="ログアウト" />
+        <SettingListItem
+          isLastChild
+          settingName="ログアウト"
+          settingRoute="/"
+        />
       </SettingListItemsWrapper>
     </SettingContainer>
   );

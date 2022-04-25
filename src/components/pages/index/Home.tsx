@@ -49,9 +49,9 @@ export const Home = () => {
     },
     {
       departureTimes: [
-        { departureTime: createDate(26, 19, 1), hasDeparted: true },
-        { departureTime: createDate(26, 20, 1), hasDeparted: false },
-        { departureTime: createDate(26, 21, 1), hasDeparted: false },
+        { departureTime: createDate(25, 19, 1), hasDeparted: true },
+        { departureTime: createDate(25, 20, 1), hasDeparted: false },
+        { departureTime: createDate(25, 21, 1), hasDeparted: false },
         { departureTime: createDate(26, 22, 1), hasDeparted: false },
         { departureTime: createDate(26, 23, 1), hasDeparted: false },
         { departureTime: createDate(26, 24, 1), hasDeparted: false },

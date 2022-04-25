@@ -8,17 +8,11 @@ type CalcTimeDeltaProps = {
 
 export const calcTimeDelta = (props: CalcTimeDeltaProps) => {
   const currentTime: number = Date.now();
-  const diff: number =
-    Math.abs(props.departureTime.getTime() - currentTime) / 1000;
-
-  const hours: number = Math.floor(((diff / 3600) % 24) * 60);
-  const updatedMinutes: string = (Math.floor((diff / 60) % 60) + hours)
+  const diff: number = Math.floor(Math.abs(props.departureTime.getTime() - currentTime) / 1000);
+  const updatedMinutes: string = Math.floor(diff / 60)
     .toString()
     .padStart(2, '0');
-
-  const updatedSeconds: string = Math.floor(diff % 60)
-    .toString()
-    .padStart(2, '0');
+  const updatedSeconds: string = (diff % 60).toString().padStart(2, '0');
 
   props.setCountdown({
     minutes: updatedMinutes,

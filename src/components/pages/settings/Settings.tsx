@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { IconMenu } from '@/components/common/IconMenu';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';
 import { SettingListItem } from '@/components/common/settings/SettingListItem';
-import { GRAY, WHITE } from '@/context/style/colorTheme';
+import { WHITE } from '@/context/style/colorTheme';
 
 export const Settings = () => {
   return (
@@ -30,7 +30,7 @@ export const Settings = () => {
 const SettingContainer = styled.div`
   margin 0 auth;
   height: 100vh;
-  background-color: ${GRAY};
+  background-color: rgba(23, 25, 30, 0.06);
 `;
 
 const SettingListItemsWrapper = styled.div`

@@ -13,13 +13,19 @@ export type StationType = {
   stationDirection: string[];
 };
 
-// type ResponseStationType = {
-//   staion_name: string,
-//   station_name_k: string,
-// };
+type ResponseStationType = {
+  id: number;
+  line_cd: number;
+  line_name: string;
+  station_cd: number;
+  station_name: string;
+  station_name_k: string;
+  direction_1?: string;
+  direction_2?: string;
+};
 
 export const ChangeStations = () => {
-  let stationsList: StationType[] = [];
+  const [stationsList, setStationsList] = useState<StationType[]>();
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
@@ -30,36 +36,35 @@ export const ChangeStations = () => {
 
   useEffect(() => {
     console.log(stationName);
-    // TODO：APIを実行する
-    axios
-      .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
-      .then((res) => {
-        console.log('成功');
-        console.log(res.data.data);
-        stationsList = res.data.data;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        // const responseData = res.data.data;
-        // stationsList = responseData.map((data: ResponseStationType) => {
-        //   const stationData = {
-        //     stationName: {data.station_name},
-        //     stationLineName: {data.station_name_k},
-        //     StationDirection: [],
-        //   };
-        //   return stationData
-        // });
-      })
-      .catch(() => {
-        console.log('error');
-      });
+    if (stationName !== undefined) {
+      axios
+        .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
+        .then((res) => {
+          console.log('成功');
+          const responseData: ResponseStationType[] = res.data.data;
+          const resStationsList = responseData.map((data) => {
+            const stationData: StationType = {
+              stationName: data.station_name,
+              stationLineName: data.line_name,
+              stationDirection: [],
+              // stationDirection: [data.direction_1, data.direction_2],
+            };
+            return stationData;
+          });
+          setStationsList(resStationsList);
+          console.log(resStationsList);
+        })
+        .catch(() => {
+          console.log('error');
+        });
+    }
   }, [stationName]);
 
   return (
     <>
       <SettingHeader pageName="駅を変更" />
       <SearchField>
-        <SearchIcon
-          sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }}
-        />
+        <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
         <SearchInput
           placeholder="駅名を入力してください"
           type="search"
@@ -69,7 +74,7 @@ export const ChangeStations = () => {
         />
       </SearchField>
       <StationCardList>
-        {stationsList.map((data, index) => {
+        {stationsList?.map((data, index) => {
           return (
             <StationCard
               key={index}
@@ -105,7 +110,7 @@ const SearchField = styled.div`
 const SearchInput = styled.input`
   width: 80%;
   height: 100%;
-  backgroundcolor: ${GRAY};
+  background-color: ${GRAY};
   border: 0;
   padding: 10px;
   :focus {

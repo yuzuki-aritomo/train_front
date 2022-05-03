@@ -15,9 +15,7 @@ export const StationCard: React.FC<StationCardProps> = (props) => {
           <StationName>{props.Station.stationName}</StationName>
           <StationLineName>{props.Station.stationLineName}</StationLineName>
         </div>
-        <StationRegisterContainer onClick={props.onClickStation}>
-          選択
-        </StationRegisterContainer>
+        <StationRegisterContainer onClick={props.onClickStation}>選択</StationRegisterContainer>
       </StationCardWrapper>
     </>
   );
@@ -39,7 +37,7 @@ const StationName = styled.p`
   font-weight: bold;
   color: ${BLACK};
   margin: 0;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

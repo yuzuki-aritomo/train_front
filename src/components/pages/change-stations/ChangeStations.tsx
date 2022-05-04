@@ -10,7 +10,7 @@ import { GRAY } from '@/context/style/colorTheme';
 export type StationType = {
   stationLineName: string;
   stationName: string;
-  stationDirection: string[];
+  stationDirection: (string | undefined)[];
 };
 
 type ResponseStationType = {
@@ -32,15 +32,15 @@ export const ChangeStations = () => {
   const handleModalClose = () => setOpen(false);
 
   const [stationName, setStationName] = useState<string>();
-  const [selectedStationDir, setSelectedStationDir] = useState<string[]>([]);
+  const [selectedStationDir, setSelectedStationDir] = useState<(string | undefined)[]>([]);
 
   useEffect(() => {
     console.log(stationName);
     if (stationName === undefined) {
       return;
     }
-    const timeoutId = setTimeout(async () => {
-      await axios
+    const timeoutId = setTimeout(() => {
+      axios
         .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
         .then((res) => {
           console.log('成功');
@@ -50,8 +50,7 @@ export const ChangeStations = () => {
             const stationData: StationType = {
               stationName: data.station_name,
               stationLineName: data.line_name,
-              stationDirection: [],
-              // stationDirection: [data.direction_1, data.direction_2],
+              stationDirection: [data.direction_1, data.direction_2],
             };
             return stationData;
           });

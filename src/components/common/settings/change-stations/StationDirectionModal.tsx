@@ -5,12 +5,14 @@ import { GRAY, WHITE } from '@/context/style/colorTheme';
 type StationDirectionModalProps = {
   isModalOpen: boolean;
   handleModalClose: () => void;
-  selectedStationDir: string[];
+  selectedStationDir: (string | undefined)[];
 };
 
-export const StationDirectionModal: React.FC<StationDirectionModalProps> = (
-  props
-) => {
+export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
+  const onClickStationDir = (data: string | undefined) => {
+    console.log('選択された。');
+    console.log(data);
+  };
   return (
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
       <ModalBox>
@@ -19,7 +21,13 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (
           return (
             <StationDirectionWrapper key={index}>
               <StationDirection>{data}</StationDirection>
-              <StationRegisterContainer>登録</StationRegisterContainer>
+              <StationRegisterContainer
+                onClick={() => {
+                  onClickStationDir(data);
+                }}
+              >
+                登録
+              </StationRegisterContainer>
             </StationDirectionWrapper>
           );
         })}

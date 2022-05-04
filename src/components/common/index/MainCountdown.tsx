@@ -48,7 +48,7 @@ const CountdownWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 80vw;
-  height: 60vw;
+  height: 80vw;
   max-width: 400px;
   max-height: 400px;
   background-color: '#eee';

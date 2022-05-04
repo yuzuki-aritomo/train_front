@@ -13,11 +13,6 @@ export type StationType = {
   stationDirection: string[];
 };
 
-// type ResponseStationType = {
-//   staion_name: string,
-//   station_name_k: string,
-// };
-
 export const ChangeStations = () => {
   let stationsList: StationType[] = [];
 
@@ -57,9 +52,7 @@ export const ChangeStations = () => {
     <>
       <SettingHeader pageName="駅を変更" />
       <SearchField>
-        <SearchIcon
-          sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }}
-        />
+        <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
         <SearchInput
           placeholder="駅名を入力してください"
           type="search"
@@ -105,7 +98,7 @@ const SearchField = styled.div`
 const SearchInput = styled.input`
   width: 80%;
   height: 100%;
-  backgroundcolor: ${GRAY};
+  background-color: ${GRAY};
   border: 0;
   padding: 10px;
   :focus {

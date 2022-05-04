@@ -37,26 +37,32 @@ export const ChangeStations = () => {
   useEffect(() => {
     console.log(stationName);
     if (stationName !== undefined) {
-      axios
-        .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
-        .then((res) => {
-          console.log('成功');
-          const responseData: ResponseStationType[] = res.data.data;
-          const resStationsList = responseData.map((data) => {
-            const stationData: StationType = {
-              stationName: data.station_name,
-              stationLineName: data.line_name,
-              stationDirection: [],
-              // stationDirection: [data.direction_1, data.direction_2],
-            };
-            return stationData;
+      const timeoutId = setTimeout(async () => {
+        await axios
+          .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
+          .then((res) => {
+            console.log('成功');
+            const responseData: ResponseStationType[] = res.data.data;
+            console.log(responseData);
+            const resStationsList = responseData.map((data) => {
+              const stationData: StationType = {
+                stationName: data.station_name,
+                stationLineName: data.line_name,
+                stationDirection: [],
+                // stationDirection: [data.direction_1, data.direction_2],
+              };
+              return stationData;
+            });
+            setStationsList(resStationsList);
+            console.log(resStationsList);
+          })
+          .catch(() => {
+            setStationsList([]);
           });
-          setStationsList(resStationsList);
-          console.log(resStationsList);
-        })
-        .catch(() => {
-          console.log('error');
-        });
+      }, 500);
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [stationName]);
 

@@ -47,7 +47,7 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: auto;
+  width: 80vw;
   height: 60vw;
   max-width: 400px;
   max-height: 400px;
@@ -67,7 +67,7 @@ const Description = styled.p`
 `;
 
 const Countdown = styled.h1`
-  font-size: 70px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 100%;
   margin: 0 0 10px;

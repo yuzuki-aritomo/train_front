@@ -148,6 +148,13 @@ export const Home = () => {
   );
 };
 
+const HomeWrapper = styled.div`
+  position: fixed;
+  z-index: 100;
+  height: 10vh;
+  width: 100%;
+`;
+
 const StationsWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -157,11 +164,4 @@ const StationsWrapper = styled.div`
   padding: 20px 10px;
   background-color: #f0f5fb;
   filter: drop-shadow(0px 1px 3px rgba(0, 24, 88, 0.15));
-`;
-
-const HomeWrapper = styled.div`
-  position: fixed;
-  z-index: 100;
-  height: 10vh;
-  width: 100%;
 `;

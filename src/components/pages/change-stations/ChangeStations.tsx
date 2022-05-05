@@ -13,7 +13,7 @@ export type StationType = {
   stationDirection: (string | undefined)[];
 };
 
-type ResponseStationType = {
+export type ResponseStationType = {
   id: number;
   line_cd: number;
   line_name: string;
@@ -25,7 +25,8 @@ type ResponseStationType = {
 };
 
 export const ChangeStations = () => {
-  const [stationsList, setStationsList] = useState<StationType[]>();
+  const [resStationList, setResStationList] = useState<ResponseStationType[]>([]);
+  const [stationsList, setStationsList] = useState<StationType[]>([]);
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
@@ -33,6 +34,7 @@ export const ChangeStations = () => {
 
   const [stationName, setStationName] = useState<string>();
   const [selectedStationDir, setSelectedStationDir] = useState<(string | undefined)[]>([]);
+  const [stationToStore, setStationToStore] = useState<ResponseStationType>();
 
   useEffect(() => {
     console.log(stationName);
@@ -43,14 +45,14 @@ export const ChangeStations = () => {
       axios
         .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
         .then((res) => {
-          console.log('成功');
           const responseData: ResponseStationType[] = res.data.data;
+          setResStationList(responseData);
           console.log(responseData);
           const resStationsList = responseData.map((data) => {
             const stationData: StationType = {
               stationName: data.station_name,
               stationLineName: data.line_name,
-              stationDirection: [data.direction_1, data.direction_2],
+              stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
             };
             return stationData;
           });
@@ -80,7 +82,7 @@ export const ChangeStations = () => {
         />
       </SearchField>
       <StationCardList>
-        {stationsList?.map((data, index) => {
+        {stationsList.map((data, index) => {
           return (
             <StationCard
               key={index}
@@ -88,16 +90,20 @@ export const ChangeStations = () => {
               onClickStation={() => {
                 handleModalOpen();
                 setSelectedStationDir(data.stationDirection);
+                setStationToStore(resStationList[index]);
               }}
             />
           );
         })}
       </StationCardList>
-      <StationDirectionModal
-        handleModalClose={handleModalClose}
-        isModalOpen={open}
-        selectedStationDir={selectedStationDir}
-      />
+      {stationToStore && (
+        <StationDirectionModal
+          handleModalClose={handleModalClose}
+          isModalOpen={open}
+          selectedStationDir={selectedStationDir}
+          stationToStore={stationToStore}
+        />
+      )}
     </>
   );
 };

@@ -1,17 +1,42 @@
 import { Modal } from '@mui/material';
 import styled from 'styled-components';
+import type { ResponseStationType } from '@/components/pages/change-stations/ChangeStations';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;
   handleModalClose: () => void;
   selectedStationDir: (string | undefined)[];
+  stationToStore: ResponseStationType;
+};
+
+type StoreStationType = {
+  id: number;
+  line_cd: number;
+  line_name: string;
+  station_cd: number;
+  station_name: string;
+  selected_direction: string;
 };
 
 export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
   const onClickStationDir = (data: string | undefined) => {
     console.log('選択された。');
     console.log(data);
+    console.log(props.stationToStore);
+    if (data === undefined) {
+      return;
+    }
+    const stationToStore: ResponseStationType = props.stationToStore;
+    const StoreStation: StoreStationType = {
+      id: stationToStore.id,
+      line_cd: stationToStore.line_cd,
+      line_name: stationToStore.line_name,
+      station_cd: stationToStore.station_cd,
+      station_name: stationToStore.station_name,
+      selected_direction: data,
+    };
+    localStorage.setItem('station', JSON.stringify(StoreStation));
   };
   return (
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
@@ -51,7 +76,7 @@ const ModalBox = styled.div`
 const ModalSelectWrapper = styled.div`
   width: 50vw;
   margin: 30px auto 0 auto;
-  fontweight: 700;
+  font-weight: 700;
   fontsize: 16px;
 `;
 

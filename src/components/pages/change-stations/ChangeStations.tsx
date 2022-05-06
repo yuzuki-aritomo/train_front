@@ -37,7 +37,6 @@ export const ChangeStations = () => {
   const [stationToStore, setStationToStore] = useState<ResponseStationType>();
 
   useEffect(() => {
-    console.log(stationName);
     if (stationName === undefined) {
       return;
     }

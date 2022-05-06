@@ -21,9 +21,6 @@ type StoreStationType = {
 
 export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
   const onClickStationDir = (data: string | undefined) => {
-    console.log('選択された。');
-    console.log(data);
-    console.log(props.stationToStore);
     if (data === undefined) {
       return;
     }
@@ -37,7 +34,22 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
       selected_direction: data,
     };
     localStorage.setItem('station', JSON.stringify(StoreStation));
+    const getStation: StoreStationType = JSON.parse(localStorage.getItem('station') || '{}');
+    if (getStation.station_name === '') {
+      alert('エラーが発生しました。');
+    } else {
+      console.log('success');
+      alert(
+        getStation.line_name +
+          ' / ' +
+          getStation.station_name +
+          ' / ' +
+          getStation.selected_direction +
+          ' で登録されました。'
+      );
+    }
   };
+
   return (
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
       <ModalBox>
@@ -56,6 +68,7 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
             </StationDirectionWrapper>
           );
         })}
+        ;
       </ModalBox>
     </Modal>
   );

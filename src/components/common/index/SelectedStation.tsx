@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { BLACK, BLUE } from '@/context/style/colorTheme';
 
 type SelectedStationProps = {
-  stationName?: string;
-  lineName?: string;
+  stationName: string;
+  lineName: string;
 };
 
 export const SelectedStation: React.FC<SelectedStationProps> = (props) => {
@@ -20,8 +20,8 @@ const StationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  width: 100%;
-  min-width: 100px;
+  width: auto;
+  min-width: 130px;
   margin: -10px 0;
   padding: 20px 10px;
   border: 7px solid ${BLUE};

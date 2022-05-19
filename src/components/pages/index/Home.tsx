@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,6 +8,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
+import { useStationStateWithStorage } from '@/components/pages/index/hooks/useStationStateWithStorage';
+import { apiClient } from '@/components/util/apiClient';
+import type { SelectedStationInfoType } from '@/context/types';
 
 type StationsInfoType = {
   departureTimes: {
@@ -18,16 +21,58 @@ type StationsInfoType = {
   lineName: string;
 };
 
+type DepartureTimesType = {
+  date: {
+    times: {
+      [key: string]: string[];
+    };
+  };
+};
+
 type TabType = {
   stationInfo: StationsInfoType;
 };
 
 export const Home = () => {
+  const init: SelectedStationInfoType = {
+    id: 0,
+    line_cd: 0,
+    line_name: '',
+    selected_direction: '',
+    station_cd: 0,
+    station_name: '',
+  };
+  const [station, setStation] = useStationStateWithStorage(init, 'station');
+  const [departureTimes, setDepartureTimes] = useState<DepartureTimesType>();
+
+  // useEffectで時刻データを取得
+  // 今日の時刻の表示をしたい！
+  // 現在時刻の取得 → 曜日取得 →
+  useEffect(() => {
+    (async () => {
+      try {
+        const params: { params: { station: number; date: 1 | 2 | 3; direction: string } } = {
+          params: {
+            station: station.station_cd,
+            date: 1,
+            direction: station.selected_direction,
+          },
+        };
+        const responseData = (await apiClient.get<DepartureTimesType>('/times', params)).data;
+        setDepartureTimes(responseData);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [station.selected_direction, station.station_cd]);
+
   // demo deta
   const createDate = (days: number, hours: number, minutes: number): Date => {
     const newDate: Date = new Date(2022, 5 - 1, days, hours, minutes);
     return newDate;
   };
+
+  // 5-00
 
   const stationsInfo: StationsInfoType[] = [
     {
@@ -117,6 +162,7 @@ export const Home = () => {
         )}
         <OtherStation />
       </StationsWrapper>
+      <button onClick={() => console.log('departureTimes:', departureTimes)}>aaaa</button>
       {stationsInfo[0] && <TabPanel stationInfo={stationsInfo[0]} />}
       <IconMenu isHomePage={true} />
     </>

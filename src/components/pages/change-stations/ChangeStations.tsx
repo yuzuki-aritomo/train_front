@@ -8,85 +8,103 @@ import { SettingHeader } from '@/components/common/settings/SettingHeader';
 import { GRAY } from '@/context/style/colorTheme';
 
 export type StationType = {
+  id: number;
+  line_cd: number;
+  station_cd: number;
   stationLineName: string;
   stationName: string;
-  stationDirection: string[];
+  stationDirection: (string | undefined)[];
 };
 
-// type ResponseStationType = {
-//   staion_name: string,
-//   station_name_k: string,
-// };
+export type ResponseStationType = {
+  id: number;
+  line_cd: number;
+  line_name: string;
+  station_cd: number;
+  station_name: string;
+  station_name_k: string;
+  direction_1?: string;
+  direction_2?: string;
+};
 
 export const ChangeStations = () => {
-  let stationsList: StationType[] = [];
+  const [searchStationName, setSearchStationName] = useState<string>();
+  const [stationsList, setStationsList] = useState<StationType[]>([]);
+  const [stationToStore, setStationToStore] = useState<StationType>();
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
-  const [stationName, setStationName] = useState<string>();
-  const [selectedStationDir, setSelectedStationDir] = useState<string[]>([]);
-
   useEffect(() => {
-    console.log(stationName);
-    // TODO：APIを実行する
-    axios
-      .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
-      .then((res) => {
-        console.log('成功');
-        console.log(res.data.data);
-        stationsList = res.data.data;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        // const responseData = res.data.data;
-        // stationsList = responseData.map((data: ResponseStationType) => {
-        //   const stationData = {
-        //     stationName: {data.station_name},
-        //     stationLineName: {data.station_name_k},
-        //     StationDirection: [],
-        //   };
-        //   return stationData
-        // });
-      })
-      .catch(() => {
-        console.log('error');
-      });
-  }, [stationName]);
+    if (searchStationName === undefined) {
+      return;
+    }
+    const timeoutId = setTimeout(() => {
+      axios
+        .get('https://train-api-rails.herokuapp.com/search?name=' + searchStationName)
+        .then((res) => {
+          const responseData: ResponseStationType[] = res.data.data;
+          const stationsList = responseData.map((data): StationType => {
+            return {
+              id: data.id,
+              line_cd: data.line_cd,
+              station_cd: data.station_cd,
+              stationName: data.station_name,
+              stationLineName: data.line_name,
+              stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
+            };
+          });
+          setStationsList(stationsList);
+        })
+        .catch(() => {
+          setStationsList([]);
+        });
+    }, 500);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchStationName]);
 
   return (
     <>
       <SettingHeader pageName="駅を変更" />
       <SearchField>
-        <SearchIcon
-          sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }}
-        />
+        <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
         <SearchInput
           placeholder="駅名を入力してください"
           type="search"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setStationName(e.target.value);
+            setSearchStationName(e.target.value);
           }}
         />
       </SearchField>
-      <StationCardList>
-        {stationsList.map((data, index) => {
-          return (
-            <StationCard
-              key={index}
-              Station={data}
-              onClickStation={() => {
-                handleModalOpen();
-                setSelectedStationDir(data.stationDirection);
-              }}
-            />
-          );
-        })}
-      </StationCardList>
-      <StationDirectionModal
-        handleModalClose={handleModalClose}
-        isModalOpen={open}
-        selectedStationDir={selectedStationDir}
-      />
+      <div>
+        <StationCardList>
+          {stationsList.map((data, index) => {
+            if (data.stationDirection.length === 0) {
+              return;
+            }
+            return (
+              <StationCard
+                key={index}
+                Station={data}
+                onClickStation={() => {
+                  handleModalOpen();
+                  setStationToStore(data);
+                }}
+              />
+            );
+          })}
+        </StationCardList>
+      </div>
+      {stationToStore && (
+        <StationDirectionModal
+          handleModalClose={handleModalClose}
+          isModalOpen={open}
+          stationToStore={stationToStore}
+        />
+      )}
     </>
   );
 };
@@ -104,8 +122,7 @@ const SearchField = styled.div`
 
 const SearchInput = styled.input`
   width: 80%;
-  height: 100%;
-  backgroundcolor: ${GRAY};
+  background-color: ${GRAY};
   border: 0;
   padding: 10px;
   :focus {
@@ -114,6 +131,8 @@ const SearchInput = styled.input`
 `;
 
 const StationCardList = styled.div`
+  height: 80vh;
   text-align: center;
   border-top: 1px solid ${GRAY};
+  overflow: scroll;
 `;

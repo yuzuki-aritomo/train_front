@@ -22,8 +22,8 @@ export const StationCard: React.FC<StationCardProps> = (props) => {
 };
 
 const StationCardWrapper = styled.div`
-  width: 96vw;
-  height: 8vh;
+  width: 96%;
+  height: 68px;
   border-bottom: 1px solid ${GRAY};
   margin: 0 auto;
   display: flex;

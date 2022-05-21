@@ -79,23 +79,25 @@ export const ChangeStations = () => {
           }}
         />
       </SearchField>
-      <StationCardList>
-        {stationsList.map((data, index) => {
-          if (data.stationDirection.length === 0) {
-            return;
-          }
-          return (
-            <StationCard
-              key={index}
-              Station={data}
-              onClickStation={() => {
-                handleModalOpen();
-                setStationToStore(data);
-              }}
-            />
-          );
-        })}
-      </StationCardList>
+      <div>
+        <StationCardList>
+          {stationsList.map((data, index) => {
+            if (data.stationDirection.length === 0) {
+              return;
+            }
+            return (
+              <StationCard
+                key={index}
+                Station={data}
+                onClickStation={() => {
+                  handleModalOpen();
+                  setStationToStore(data);
+                }}
+              />
+            );
+          })}
+        </StationCardList>
+      </div>
       {stationToStore && (
         <StationDirectionModal
           handleModalClose={handleModalClose}
@@ -129,7 +131,7 @@ const SearchInput = styled.input`
 `;
 
 const StationCardList = styled.div`
-  height: 85vh;
+  height: 80vh;
   text-align: center;
   border-top: 1px solid ${GRAY};
   overflow: scroll;

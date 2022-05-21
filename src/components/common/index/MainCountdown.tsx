@@ -47,7 +47,7 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 80vw;
+  //width: 80vw;
   height: 80vw;
   max-width: 400px;
   max-height: 400px;
@@ -79,7 +79,6 @@ const DepartureTime = styled.div`
   font-weight: 700;
   font-size: 22px;
   width: 75%;
-  max-width: 205px;
   text-align: center;
   border-radius: 9999px;
   span {

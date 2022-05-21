@@ -28,7 +28,7 @@ export const Settings = () => {
 };
 
 const SettingContainer = styled.div`
-  margin 0 auth;
+  margin: 0 auto;
   height: 100vh;
   background-color: rgba(23, 25, 30, 0.06);
 `;

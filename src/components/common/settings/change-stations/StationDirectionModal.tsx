@@ -1,13 +1,12 @@
 import { Modal } from '@mui/material';
 import styled from 'styled-components';
-import type { ResponseStationType } from '@/components/pages/change-stations/ChangeStations';
+import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;
   handleModalClose: () => void;
-  selectedStationDir: (string | undefined)[];
-  stationToStore: ResponseStationType;
+  stationToStore: StationType;
 };
 
 type StoreStationType = {
@@ -24,13 +23,13 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
     if (data === undefined) {
       return;
     }
-    const stationToStore: ResponseStationType = props.stationToStore;
+    const stationToStore: StationType = props.stationToStore;
     const StoreStation: StoreStationType = {
       id: stationToStore.id,
       line_cd: stationToStore.line_cd,
-      line_name: stationToStore.line_name,
+      line_name: stationToStore.stationLineName,
       station_cd: stationToStore.station_cd,
-      station_name: stationToStore.station_name,
+      station_name: stationToStore.stationName,
       selected_direction: data,
     };
     localStorage.setItem('station', JSON.stringify(StoreStation));
@@ -54,7 +53,7 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
       <ModalBox>
         <ModalSelectWrapper>方面を選択してください</ModalSelectWrapper>
-        {props.selectedStationDir.map((data, index) => {
+        {props.stationToStore.stationDirection.map((data, index) => {
           return (
             <StationDirectionWrapper key={index}>
               <StationDirection>{data}</StationDirection>

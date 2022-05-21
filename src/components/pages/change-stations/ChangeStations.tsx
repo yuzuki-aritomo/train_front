@@ -8,6 +8,9 @@ import { SettingHeader } from '@/components/common/settings/SettingHeader';
 import { GRAY } from '@/context/style/colorTheme';
 
 export type StationType = {
+  id: number;
+  line_cd: number;
+  station_cd: number;
   stationLineName: string;
   stationName: string;
   stationDirection: (string | undefined)[];
@@ -25,38 +28,34 @@ export type ResponseStationType = {
 };
 
 export const ChangeStations = () => {
-  const [resStationList, setResStationList] = useState<ResponseStationType[]>([]);
+  const [searchStationName, setSearchStationName] = useState<string>();
   const [stationsList, setStationsList] = useState<StationType[]>([]);
+  const [stationToStore, setStationToStore] = useState<StationType>();
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => setOpen(true);
   const handleModalClose = () => setOpen(false);
 
-  const [stationName, setStationName] = useState<string>();
-  const [selectedStationDir, setSelectedStationDir] = useState<(string | undefined)[]>([]);
-  const [stationToStore, setStationToStore] = useState<ResponseStationType>();
-
   useEffect(() => {
-    if (stationName === undefined) {
+    if (searchStationName === undefined) {
       return;
     }
     const timeoutId = setTimeout(() => {
       axios
-        .get('https://train-api-rails.herokuapp.com/search?name=' + stationName)
+        .get('https://train-api-rails.herokuapp.com/search?name=' + searchStationName)
         .then((res) => {
           const responseData: ResponseStationType[] = res.data.data;
-          setResStationList(responseData);
-          console.log(responseData);
-          const resStationsList = responseData.map((data) => {
-            const stationData: StationType = {
+          const stationsList = responseData.map((data): StationType => {
+            return {
+              id: data.id,
+              line_cd: data.line_cd,
+              station_cd: data.station_cd,
               stationName: data.station_name,
               stationLineName: data.line_name,
               stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
             };
-            return stationData;
           });
-          setStationsList(resStationsList);
-          console.log(resStationsList);
+          setStationsList(stationsList);
         })
         .catch(() => {
           setStationsList([]);
@@ -65,7 +64,7 @@ export const ChangeStations = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [stationName]);
+  }, [searchStationName]);
 
   return (
     <>
@@ -76,20 +75,22 @@ export const ChangeStations = () => {
           placeholder="駅名を入力してください"
           type="search"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setStationName(e.target.value);
+            setSearchStationName(e.target.value);
           }}
         />
       </SearchField>
       <StationCardList>
         {stationsList.map((data, index) => {
+          if (data.stationDirection.length === 0) {
+            return;
+          }
           return (
             <StationCard
               key={index}
               Station={data}
               onClickStation={() => {
                 handleModalOpen();
-                setSelectedStationDir(data.stationDirection);
-                setStationToStore(resStationList[index]);
+                setStationToStore(data);
               }}
             />
           );
@@ -99,7 +100,6 @@ export const ChangeStations = () => {
         <StationDirectionModal
           handleModalClose={handleModalClose}
           isModalOpen={open}
-          selectedStationDir={selectedStationDir}
           stationToStore={stationToStore}
         />
       )}
@@ -120,7 +120,6 @@ const SearchField = styled.div`
 
 const SearchInput = styled.input`
   width: 80%;
-  height: 100%;
   background-color: ${GRAY};
   border: 0;
   padding: 10px;
@@ -130,6 +129,8 @@ const SearchInput = styled.input`
 `;
 
 const StationCardList = styled.div`
+  height: 85vh;
   text-align: center;
   border-top: 1px solid ${GRAY};
+  overflow: scroll;
 `;

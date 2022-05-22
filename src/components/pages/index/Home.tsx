@@ -110,8 +110,7 @@ export const Home = () => {
 
   const Tabs: React.FC<TabType> = (props) => {
     return (
-      <div
-        style={{ flexBasis: '33%' }}
+      <TabsWrapper
         onClick={() => {
           setActiveNum(props.activeNum);
         }}
@@ -127,7 +126,7 @@ export const Home = () => {
             stationName={props.stationInfo.stationName}
           />
         )}
-      </div>
+      </TabsWrapper>
     );
   };
 
@@ -149,10 +148,14 @@ export const Home = () => {
 };
 
 const HomeWrapper = styled.div`
-  position: fixed;
   z-index: 100;
-  height: 10vh;
+  height: 100vh;
   width: 100%;
+`;
+
+const TabsWrapper = styled.div`
+  width: 100%;
+  flex-basis: '33%';
 `;
 
 const StationsWrapper = styled.div`
@@ -160,6 +163,7 @@ const StationsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 15vh;
   margin-bottom: 3px;
   padding: 20px 10px;
   background-color: #f0f5fb;

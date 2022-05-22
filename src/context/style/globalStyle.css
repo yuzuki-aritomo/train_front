@@ -14,6 +14,7 @@ body {
   color: #17191e;
   font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   max-width: 768px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -23,7 +24,6 @@ h1 {
 .swiper {
   width: 100%;
   height: 90vh !important;
-  position: fixed !important;
 }
 
 .swiper-slide {

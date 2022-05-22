@@ -8,8 +8,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
-import { useStationStateWithStorage } from '@/components/pages/index/hooks/useStationStateWithStorage';
 import { apiClient } from '@/components/util/apiClient';
+import { getStationInfo } from '@/components/util/index/getStationInfo';
 import type { SelectedStationInfoType } from '@/context/types';
 
 type StationsInfoType = {
@@ -22,10 +22,8 @@ type StationsInfoType = {
 };
 
 type DepartureTimesType = {
-  date: {
-    times: {
-      [key: string]: string[];
-    };
+  times: {
+    [key: string]: string[];
   };
 };
 
@@ -36,30 +34,35 @@ type TabType = {
 export const Home = () => {
   const init: SelectedStationInfoType = {
     id: 0,
-    line_cd: 0,
+    line_cd: 3400326,
     line_name: '',
-    selected_direction: '',
+    selected_direction: '京都河原町方面',
     station_cd: 0,
     station_name: '',
   };
-  const [station, setStation] = useStationStateWithStorage(init, 'station');
+
+  const [station, setStation] = useState<SelectedStationInfoType>(init);
   const [departureTimes, setDepartureTimes] = useState<DepartureTimesType>();
 
   // useEffectで時刻データを取得
   // 今日の時刻の表示をしたい！
   // 現在時刻の取得 → 曜日取得 →
   useEffect(() => {
-    (async () => {
+    const stationInfo: SelectedStationInfoType | void = getStationInfo('station');
+    if (!stationInfo) return;
+
+    (async (): Promise<void> => {
       try {
         const params: { params: { station: number; date: 1 | 2 | 3; direction: string } } = {
           params: {
-            station: station.station_cd,
+            station: stationInfo.station_cd,
             date: 1,
-            direction: station.selected_direction,
+            direction: stationInfo.selected_direction,
           },
         };
         const responseData = (await apiClient.get<DepartureTimesType>('/times', params)).data;
         setDepartureTimes(responseData);
+        setStation(stationInfo);
       } catch (error) {
         console.log(error);
       }
@@ -154,15 +157,10 @@ export const Home = () => {
     <HomeWrapper>
       <StationsWrapper>
         <OtherStation />
-        {stationsInfo[0] && (
-          <SelectedStation
-            lineName={stationsInfo[0].lineName}
-            stationName={stationsInfo[0].stationName}
-          />
-        )}
+        <SelectedStation lineName={station.line_name} stationName={station.station_name} />
         <OtherStation />
       </StationsWrapper>
-      <button onClick={() => console.log('departureTimes:', departureTimes)}>aaaa</button>
+      <button onClick={() => console.log('departureTimes:', departureTimes)}>aaa</button>
       {stationsInfo[0] && <TabPanel stationInfo={stationsInfo[0]} />}
       <IconMenu isHomePage={true} />
     </HomeWrapper>

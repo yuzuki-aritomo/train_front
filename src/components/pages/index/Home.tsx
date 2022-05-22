@@ -163,7 +163,7 @@ const StationsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 15vh;
+  height: 20vh;
   margin-bottom: 3px;
   padding: 20px 10px;
   background-color: #f0f5fb;

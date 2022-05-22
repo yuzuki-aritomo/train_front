@@ -151,7 +151,7 @@ export const Home = () => {
   };
 
   return (
-    <>
+    <HomeWrapper>
       <StationsWrapper>
         <OtherStation />
         {stationsInfo[0] && (
@@ -165,15 +165,20 @@ export const Home = () => {
       <button onClick={() => console.log('departureTimes:', departureTimes)}>aaaa</button>
       {stationsInfo[0] && <TabPanel stationInfo={stationsInfo[0]} />}
       <IconMenu isHomePage={true} />
-    </>
+    </HomeWrapper>
   );
 };
+
+const HomeWrapper = styled.div`
+  z-index: 100;
+  height: 100vh;
+  width: 100%;
+`;
 
 const StationsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
   z-index: 100;
   column-gap: 10px;
   width: 100%;

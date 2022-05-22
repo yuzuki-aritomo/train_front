@@ -20,7 +20,7 @@ const StationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  width: auto;
+  width: 33%;
   min-width: 130px;
   margin: -10px 0;
   padding: 20px 10px;

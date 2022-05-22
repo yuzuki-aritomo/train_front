@@ -1,28 +1,73 @@
 import { Modal } from '@mui/material';
 import styled from 'styled-components';
+import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;
   handleModalClose: () => void;
-  selectedStationDir: string[];
+  stationToStore: StationType;
 };
 
-export const StationDirectionModal: React.FC<StationDirectionModalProps> = (
-  props
-) => {
+type StoreStationType = {
+  id: number;
+  line_cd: number;
+  line_name: string;
+  station_cd: number;
+  station_name: string;
+  selected_direction: string;
+};
+
+export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
+  const onClickStationDir = (data: string | undefined) => {
+    if (data === undefined) {
+      return;
+    }
+    const stationToStore: StationType = props.stationToStore;
+    const StoreStation: StoreStationType = {
+      id: stationToStore.id,
+      line_cd: stationToStore.line_cd,
+      line_name: stationToStore.stationLineName,
+      station_cd: stationToStore.station_cd,
+      station_name: stationToStore.stationName,
+      selected_direction: data,
+    };
+    localStorage.setItem('station', JSON.stringify(StoreStation));
+    const getStation: StoreStationType = JSON.parse(localStorage.getItem('station') || '{}');
+    if (getStation.station_name === '') {
+      alert('エラーが発生しました。');
+    } else {
+      console.log('success');
+      alert(
+        getStation.line_name +
+          ' / ' +
+          getStation.station_name +
+          ' / ' +
+          getStation.selected_direction +
+          ' で登録されました。'
+      );
+    }
+  };
+
   return (
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
       <ModalBox>
         <ModalSelectWrapper>方面を選択してください</ModalSelectWrapper>
-        {props.selectedStationDir.map((data, index) => {
+        {props.stationToStore.stationDirection.map((data, index) => {
           return (
             <StationDirectionWrapper key={index}>
               <StationDirection>{data}</StationDirection>
-              <StationRegisterContainer>登録</StationRegisterContainer>
+              <StationRegisterContainer
+                onClick={() => {
+                  onClickStationDir(data);
+                }}
+              >
+                登録
+              </StationRegisterContainer>
             </StationDirectionWrapper>
           );
         })}
+        ;
       </ModalBox>
     </Modal>
   );
@@ -43,7 +88,7 @@ const ModalBox = styled.div`
 const ModalSelectWrapper = styled.div`
   width: 50vw;
   margin: 30px auto 0 auto;
-  fontweight: 700;
+  font-weight: 700;
   fontsize: 16px;
 `;
 

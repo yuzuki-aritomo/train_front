@@ -1,11 +1,21 @@
 import type { AppProps } from 'next/app';
-import '@/context/style/globalStyle.css';
-import '@/context/style/swiperStyle.css';
-import 'swiper/css/bundle';
 import 'destyle.css';
+import '@/context/style/globalStyle.css';
+import 'swiper/css/bundle';
+import styled from 'styled-components';
+import { BLUE } from '@/context/style/colorTheme';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Wapper>
+      <Component {...pageProps} />
+    </Wapper>
+  );
 }
 
 export default MyApp;
+
+const Wapper = styled.div`
+  position: relative;
+  border: 1px solid ${BLUE};
+`;

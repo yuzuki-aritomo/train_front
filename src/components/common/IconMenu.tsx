@@ -19,9 +19,9 @@ export const IconMenu: React.FC<IconMenuType> = (props) => {
       }}
     >
       {props.isHomePage ? (
-        <SettingsOutlinedIcon style={{ color: BLACK, fontSize: '3rem' }} />
+        <SettingsOutlinedIcon style={{ color: BLACK, fontSize: '2.5rem' }} />
       ) : (
-        <HomeOutlinedIcon style={{ color: BLACK, fontSize: '3rem' }} />
+        <HomeOutlinedIcon style={{ color: BLACK, fontSize: '2.5rem' }} />
       )}
     </IconMenuBox>
   );
@@ -30,7 +30,7 @@ export const IconMenu: React.FC<IconMenuType> = (props) => {
 const IconMenuBox = styled.button`
   width: 50px;
   height: 50px;
-  top: 85%;
+  top: 75%;
   left: 80%;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   background-color: ${WHITE};

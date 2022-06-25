@@ -122,6 +122,7 @@ const SearchField = styled.div`
 
 const SearchInput = styled.input`
   width: 80%;
+  height: 100%;
   background-color: ${GRAY};
   border: 0;
   padding: 10px;

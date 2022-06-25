@@ -47,9 +47,8 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: 60vw;
-  max-width: 400px;
+  height: 70vw;
+  max-width: 300px;
   max-height: 400px;
   background-color: '#eee';
   border: 10px solid ${BLUE};
@@ -67,7 +66,7 @@ const Description = styled.p`
 `;
 
 const Countdown = styled.h1`
-  font-size: 70px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 100%;
   margin: 0 0 10px;
@@ -79,7 +78,6 @@ const DepartureTime = styled.div`
   font-weight: 700;
   font-size: 22px;
   width: 75%;
-  max-width: 205px;
   text-align: center;
   border-radius: 9999px;
   span {

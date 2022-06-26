@@ -261,6 +261,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@holiday-jp/holiday_jp@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@holiday-jp/holiday_jp/-/holiday_jp-2.3.0.tgz#1eda2a59c67ae6d16c54101f23c2d3fa3ce264c0"
+  integrity sha512-heHm8al0J6SQcTKAYPcydaouTELQ71cr9yPmSdsmr6cXINDbqwfvQIgFH9LO7EHiZXBPcEWX7jUzEUHKBYtAkQ==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"

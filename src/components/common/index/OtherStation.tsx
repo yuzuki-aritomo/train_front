@@ -1,8 +1,9 @@
 import LockIcon from '@mui/icons-material/Lock';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
 import { BLACK, BLUE } from '@/context/style/colorTheme';
 
-export const OtherStation: React.FC = () => {
+export const OtherStation: FC = memo(function OtherStation() {
   return (
     <StationWrapper>
       <CommentWrapper>
@@ -12,7 +13,7 @@ export const OtherStation: React.FC = () => {
       <StationLineName>ライン名</StationLineName>
     </StationWrapper>
   );
-};
+});
 
 const StationWrapper = styled.div`
   position: relative;

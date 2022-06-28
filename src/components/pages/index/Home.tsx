@@ -37,6 +37,7 @@ export const Home: FC = () => {
       const departureTimesData = await getDepartureTimes(station);
       setDepartureTimes(departureTimesData);
     };
+    console.log('useEffect');
 
     (async (): Promise<void> => {
       try {

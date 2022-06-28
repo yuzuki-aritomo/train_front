@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { getDepartureTimes } from '@/components/api/getDepartureTimes';
 import { IconMenu } from '@/components/common/IconMenu';
 
 import 'swiper/css';
@@ -8,7 +9,6 @@ import 'swiper/css/pagination';
 import { CountdownList } from '@/components/common/index/CountdownList';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
-import { getDepartureTimes } from '@/components/util/index/getDepartureTimes';
 import { getStationInfo } from '@/components/util/index/getStationInfo';
 import type { DepartureTimesType } from '@/types/DepartureTimesType';
 import type { SelectedStationInfoType } from '@/types/SelectedStationInfoType';

@@ -1,5 +1,5 @@
-import { apiClient } from '../apiClient';
-import { setDate } from './setDate';
+import { apiClient } from '@/components/api/apiClient';
+import { setDate } from '@/components/util/index/setDate';
 import type { DepartureTimesType } from '@/types/DepartureTimesType';
 import type { SelectedStationInfoType } from '@/types/SelectedStationInfoType';
 

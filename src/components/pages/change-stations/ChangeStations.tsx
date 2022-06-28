@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { apiClient } from '@/components/api/apiClient';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';
@@ -17,14 +17,16 @@ export type StationType = {
 };
 
 export type ResponseStationType = {
-  id: number;
-  line_cd: number;
-  line_name: string;
-  station_cd: number;
-  station_name: string;
-  station_name_k: string;
-  direction_1?: string;
-  direction_2?: string;
+  data: {
+    id: number;
+    line_cd: number;
+    line_name: string;
+    station_cd: number;
+    station_name: string;
+    station_name_k: string;
+    direction_1?: string;
+    direction_2?: string;
+  }[];
 };
 
 export const ChangeStations = () => {
@@ -37,30 +39,30 @@ export const ChangeStations = () => {
   const handleModalClose = () => setOpen(false);
 
   useEffect(() => {
-    if (searchStationName === undefined) {
-      return;
-    }
-    const timeoutId = setTimeout(() => {
-      axios
-        .get('https://train-api-rails.herokuapp.com/search?name=' + searchStationName)
-        .then((res) => {
-          const responseData: ResponseStationType[] = res.data.data;
-          const stationsList = responseData.map((data): StationType => {
-            return {
-              id: data.id,
-              line_cd: data.line_cd,
-              station_cd: data.station_cd,
-              stationName: data.station_name,
-              stationLineName: data.line_name,
-              stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
-            };
-          });
-          setStationsList(stationsList);
-        })
-        .catch(() => {
-          setStationsList([]);
+    if (!searchStationName) return setStationsList([]);
+
+    const timeoutId = setTimeout(async () => {
+      try {
+        const responseData = (
+          await apiClient.get<ResponseStationType>(`/search?name=${searchStationName}`)
+        ).data;
+        console.log('responseData:', responseData);
+        const newStationList = responseData.data.map((data): StationType => {
+          return {
+            id: data.id,
+            line_cd: data.line_cd,
+            station_cd: data.station_cd,
+            stationName: data.station_name,
+            stationLineName: data.line_name,
+            stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
+          };
         });
+        setStationsList(newStationList);
+      } catch (error) {
+        console.log(error);
+      }
     }, 500);
+
     return () => {
       clearTimeout(timeoutId);
     };

@@ -1,4 +1,4 @@
-export type SelectedStationInfoType = {
+export type SelectedStationType = {
   id: number;
   line_cd: number;
   line_name: string;

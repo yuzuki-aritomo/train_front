@@ -29,6 +29,7 @@ export const CountdownList: FC<Props> = (props) => {
   };
 
   const editTimes = (): (Date | undefined)[] | undefined => {
+    console.log('departureTimes:', departureTimes);
     if (!departureTimes || !departureTimes.data.times) return;
 
     const times: string[][] = Object.entries(departureTimes.data.times).map((time) => time[1]);

@@ -6,15 +6,7 @@ import { StationCard } from '@/components/common/settings/change-stations/Statio
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';
 import { GRAY } from '@/context/style/colorTheme';
-
-export type StationType = {
-  id: number;
-  line_cd: number;
-  station_cd: number;
-  stationLineName: string;
-  stationName: string;
-  stationDirection: (string | undefined)[];
-};
+import type { StationType } from '@/types/StationType';
 
 export type ResponseStationType = {
   id: number;

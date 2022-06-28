@@ -1,4 +1,5 @@
 import { Modal } from '@mui/material';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
@@ -19,6 +20,8 @@ type StoreStationType = {
 };
 
 export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
+  const router = useRouter();
+
   const onClickStationDir = (data: string | undefined) => {
     if (data === undefined) {
       return;
@@ -46,6 +49,7 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
           getStation.selected_direction +
           ' で登録されました。'
       );
+      router.push('/');
     }
   };
 
@@ -89,7 +93,7 @@ const ModalSelectWrapper = styled.div`
   width: 50vw;
   margin: 30px auto 0 auto;
   font-weight: 700;
-  fontsize: 16px;
+  font-size: 16px;
 `;
 
 const StationDirectionWrapper = styled.div`

@@ -10,7 +10,7 @@ type Props = {
   departureTimes: DepartureTimesType | undefined;
 };
 
-export const ContdownList: FC<Props> = (props) => {
+export const CountdownList: FC<Props> = (props) => {
   const { departureTimes } = props;
 
   const now = new Date();
@@ -45,7 +45,7 @@ export const ContdownList: FC<Props> = (props) => {
     return newTimes;
   };
 
-  const newDeparturTimes = editTimes();
+  const newDepartureTimes = editTimes();
 
   return (
     <Swiper
@@ -58,16 +58,16 @@ export const ContdownList: FC<Props> = (props) => {
       slidesPerView={'auto'}
       spaceBetween={30}
     >
-      {newDeparturTimes?.map((departurTime, index) => {
-        if (!departurTime) return;
-        if (now > departurTime) return;
+      {newDepartureTimes?.map((departureTime, index) => {
+        if (!departureTime) return;
+        if (now > departureTime) return;
 
         displayCount++;
         if (displayCount > 10) return;
 
         return (
           <SwiperSlide key={index}>
-            <MainCountdown departureTime={departurTime} />
+            <MainCountdown departureTime={departureTime} />
           </SwiperSlide>
         );
       })}

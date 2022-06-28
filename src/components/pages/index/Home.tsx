@@ -5,7 +5,7 @@ import { IconMenu } from '@/components/common/IconMenu';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { ContdownList } from '@/components/common/index/ContdownList';
+import { CountdownList } from '@/components/common/index/CountdownList';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
 import { getDepartureTimes } from '@/components/util/index/getDepartureTimes';
@@ -55,7 +55,7 @@ export const Home: FC = () => {
         <SelectedStation lineName={station.line_name} stationName={station.station_name} />
         <OtherStation />
       </StationsWrapper>
-      <ContdownList departureTimes={departureTimes} />
+      <CountdownList departureTimes={departureTimes} />
       <IconMenu isHomePage={true} />
     </HomeWrapper>
   );

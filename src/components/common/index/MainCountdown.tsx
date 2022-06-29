@@ -15,9 +15,9 @@ type MainCountdownProps = {
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
   const { departureTime } = props;
-  const [countdown, setCountdown] = useState<CountDownType>();
   const now = new Date();
   const isPast = departureTime < now;
+  const [countdown, setCountdown] = useState<CountDownType>();
 
   useEffect(() => {
     const timer: NodeJS.Timeout = setInterval(() => {

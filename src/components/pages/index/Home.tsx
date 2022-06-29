@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { getDepartureTimes } from '@/components/api/getDepartureTimes';
 import { IconMenu } from '@/components/common/IconMenu';
@@ -9,50 +10,37 @@ import 'swiper/css/pagination';
 import { CountdownList } from '@/components/common/index/CountdownList';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
-import { getStationInfo } from '@/components/util/index/getStationInfo';
+import { selectedStationState } from '@/context/globalStates/selectedStationState';
 import type { DepartureTimesType } from '@/types/DepartureTimesType';
-import type { SelectedStationInfoType } from '@/types/SelectedStationInfoType';
 
 export const Home: FC = () => {
-  const initStationData: SelectedStationInfoType = {
-    id: 3071,
-    line_cd: 11605,
-    line_name: 'JR湖西線',
-    selected_direction: '敦賀方面',
-    station_cd: 1160501,
-    station_name: '京都',
-  };
-
-  const [station, setStation] = useState<SelectedStationInfoType>(initStationData);
+  const selectedStation = useRecoilValue(selectedStationState);
   const [departureTimes, setDepartureTimes] = useState<DepartureTimesType>();
 
-  useEffect(() => {
-    const setStationData = async () => {
-      const stationData: SelectedStationInfoType | null = getStationInfo();
-      if (stationData) return setStation(stationData);
-      setStation(initStationData);
-    };
+  const setDepartureTimesData = async () => {
+    if (!selectedStation) return;
 
-    const setDepartureTimesData = async () => {
-      const departureTimesData = await getDepartureTimes(station);
+    try {
+      const departureTimesData = await getDepartureTimes(selectedStation);
       setDepartureTimes(departureTimesData);
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    (async (): Promise<void> => {
-      try {
-        await setStationData();
-        await setDepartureTimesData();
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+  useEffect(() => {
+    setDepartureTimesData();
   }, []);
 
+  if (!selectedStation) return <div />;
   return (
     <HomeWrapper>
       <StationsWrapper>
         <OtherStation />
-        <SelectedStation lineName={station.line_name} stationName={station.station_name} />
+        <SelectedStation
+          lineName={selectedStation.line_name}
+          stationName={selectedStation.station_name}
+        />
         <OtherStation />
       </StationsWrapper>
       <CountdownList departureTimes={departureTimes} />

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { BLACK, GRAY } from '@/context/style/colorTheme';
+import type { StationType } from '@/types/StationType';
 
 type StationCardProps = {
   Station: StationType;

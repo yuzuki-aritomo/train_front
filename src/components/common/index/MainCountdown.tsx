@@ -17,6 +17,7 @@ export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
   const { departureTime } = props;
   const [countdown, setCountdown] = useState<CountDownType>();
   const now = new Date();
+  const isPast = departureTime < now;
 
   useEffect(() => {
     const timer: NodeJS.Timeout = setInterval(() => {
@@ -31,17 +32,13 @@ export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
     };
   }, [departureTime]);
 
-  const isPast = (): boolean => {
-    return departureTime < now;
-  };
-
   return (
-    <CountdownWrapper isPast={isPast()}>
-      <Description isPast={isPast()}>出発時刻まで残り...</Description>
+    <CountdownWrapper isPast={isPast}>
+      <Description isPast={isPast}>出発時刻まで残り...</Description>
       <Countdown>
         {countdown?.minutes}:{countdown?.seconds}
       </Countdown>
-      <DepartureTime isPast={isPast()}>
+      <DepartureTime isPast={isPast}>
         {formattedDate(departureTime, 'monthsDays')} <span>発</span>
       </DepartureTime>
     </CountdownWrapper>

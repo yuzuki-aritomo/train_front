@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { getDepartureTimes } from '@/components/api/getDepartureTimes';
+import { getDepartureTimes } from '@/api/getDepartureTimes';
 import { IconMenu } from '@/components/common/IconMenu';
 
 import 'swiper/css';

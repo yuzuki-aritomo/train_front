@@ -1,4 +1,4 @@
-import { apiClient } from '@/components/api/apiClient';
+import { apiClient } from '@/api/apiClient';
 import { setDate } from '@/components/util/index/setDate';
 import type { DepartureTimesType } from '@/types/DepartureTimesType';
 import type { SelectedStationType } from '@/types/SelectedStationType';

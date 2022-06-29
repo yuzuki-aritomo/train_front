@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { apiClient } from '@/components/api/apiClient';
+import { apiClient } from '@/api/apiClient';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';

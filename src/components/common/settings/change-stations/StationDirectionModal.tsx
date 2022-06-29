@@ -2,7 +2,7 @@ import { Modal } from '@mui/material';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import type { StationType } from '@/components/pages/change-stations/ChangeStations';
-import { GRAY, WHITE } from '@/context/style/colorTheme';
+import { GRAY, WHITE, BLUE } from '@/context/style/colorTheme';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;
@@ -71,7 +71,6 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
             </StationDirectionWrapper>
           );
         })}
-        ;
       </ModalBox>
     </Modal>
   );
@@ -115,7 +114,7 @@ const StationRegisterContainer = styled.button`
   color: white;
   font-size: 14px;
   text-align: center;
-  background-color: purple;
+  background-color: ${BLUE};
   border-radius: 32px;
   padding: 10px 0;
 `;

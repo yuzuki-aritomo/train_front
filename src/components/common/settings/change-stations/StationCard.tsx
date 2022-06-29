@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import type { StationType } from '@/components/pages/change-stations/ChangeStations';
-import { BLACK, GRAY } from '@/context/style/colorTheme';
+import { BLACK, GRAY, BLUE } from '@/context/style/colorTheme';
 
 type StationCardProps = {
   Station: StationType;
@@ -45,7 +45,7 @@ const StationName = styled.p`
 
 const StationLineName = styled.p`
   width: 100%;
-  color: purple;
+  color: ${BLUE};
   font-size: 14px;
   margin: 0;
   text-align: left;
@@ -58,7 +58,7 @@ const StationRegisterContainer = styled.button`
   width: 18vw;
   color: white;
   font-size: 14px;
-  background-color: purple;
+  background-color: ${BLUE};
   border-radius: 32px;
   padding: 10px 0;
 `;

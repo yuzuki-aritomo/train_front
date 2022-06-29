@@ -18,9 +18,8 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
   const setSelectedStation = useSetRecoilState(selectedStationState);
 
   const onClickStationDir = (data: string | undefined) => {
-    if (data === undefined) {
-      return;
-    }
+    if (data === undefined) return;
+
     const stationToStore: StationType = props.stationToStore;
     const StoreStation: SelectedStationType = {
       id: stationToStore.id,

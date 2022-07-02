@@ -1,7 +1,7 @@
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { NextRouter, useRouter } from 'next/router';
-import React from 'react';
+import React, { FC, memo } from 'react';
 import styled from 'styled-components';
 import { BLACK, WHITE } from '@/context/style/colorTheme';
 
@@ -9,7 +9,7 @@ type IconMenuType = {
   isHomePage: boolean;
 };
 
-export const IconMenu: React.FC<IconMenuType> = (props) => {
+export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
   const router: NextRouter = useRouter();
 
   return (
@@ -25,7 +25,7 @@ export const IconMenu: React.FC<IconMenuType> = (props) => {
       )}
     </IconMenuBox>
   );
-};
+});
 
 const IconMenuBox = styled.button`
   width: 50px;

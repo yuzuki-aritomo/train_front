@@ -14,12 +14,13 @@ type MainCountdownProps = {
 };
 
 export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
+  const { departureTime } = props;
   const [countdown, setCountdown] = useState<CountDownType>();
 
   useEffect(() => {
     const timer: NodeJS.Timeout = setInterval(() => {
       calcTimeDelta({
-        departureTime: props.departureTime,
+        departureTime: departureTime,
         setCountdown: setCountdown,
       });
     }, 1000);
@@ -27,7 +28,7 @@ export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [departureTime]);
 
   return (
     <CountdownWrapper>
@@ -36,7 +37,7 @@ export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
         {countdown?.minutes}:{countdown?.seconds}
       </Countdown>
       <DepartureTime>
-        {formattedDate(props.departureTime, 'monthsDays')} <span>発</span>
+        {formattedDate(departureTime, 'monthsDays')} <span>発</span>
       </DepartureTime>
     </CountdownWrapper>
   );
@@ -47,8 +48,8 @@ const CountdownWrapper = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  width: 300px;
   height: 70vw;
-  max-width: 300px;
   max-height: 400px;
   background-color: '#eee';
   border: 10px solid ${BLUE};

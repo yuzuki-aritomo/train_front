@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { calcTimeDelta } from '@/components/util/calcTimeDelta';
@@ -32,6 +33,17 @@ export const MainCountdown: React.FC<MainCountdownProps> = (props) => {
     };
   }, [departureTime]);
 
+  if (countdown == undefined) {
+    return (
+      <Skeleton
+        height="70vw"
+        max-height="400px"
+        sx={{ borderRadius: '40px', boxShadow: '0px 4px 12px 2px rgba(108, 155, 210, 0.5)' }}
+        variant="rectangular"
+        width="300px"
+      />
+    );
+  }
   return (
     <CountdownWrapper isPast={isPast}>
       <Description isPast={isPast}>出発時刻まで残り...</Description>

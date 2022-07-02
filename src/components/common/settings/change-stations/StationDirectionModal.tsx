@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
-import { GRAY, WHITE, BLUE } from '@/context/style/colorTheme';
+import { WHITE, BLUE } from '@/context/style/colorTheme';
 import type { SelectedStationType } from '@/types/SelectedStationType';
 import type { StationType } from '@/types/StationType';
 
@@ -54,10 +54,12 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
   return (
     <Modal open={props.isModalOpen} onClose={props.handleModalClose}>
       <ModalBox>
-        <ModalSelectWrapper>方面を選択してください</ModalSelectWrapper>
+        <ModalTitle>方面を選択してください</ModalTitle>
         {props.stationToStore.stationDirection.map((data, index) => {
+          const isLastElm = index + 1 === props.stationToStore.stationDirection.length;
+
           return (
-            <StationDirectionWrapper key={index}>
+            <StationDirectionWrapper key={index} isLastElm={isLastElm}>
               <StationDirection>{data}</StationDirection>
               <StationRegisterContainer
                 onClick={() => {
@@ -74,45 +76,46 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
   );
 };
 
+const buttonSize = '70px';
+
 const ModalBox = styled.div`
-  width: 82%;
-  height: 26%;
-  top: 30%;
-  left: 0;
-  right: 0;
-  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 24;
   background-color: ${WHITE};
   border-radius: 16px;
-  position: absolute;
+  padding: 24px;
+  width: 80%;
 `;
 
-const ModalSelectWrapper = styled.div`
-  width: 50vw;
-  margin: 30px auto 0 auto;
+const ModalTitle = styled.div`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
+  margin-bottom: 16px;
 `;
 
-const StationDirectionWrapper = styled.div`
-  height: 8vh;
-  margin: 0 20px;
-  border-bottom: 1px solid ${GRAY};
+const StationDirectionWrapper = styled.div<{ isLastElm: boolean }>`
+  padding: 10px 0;
+  border-bottom: ${(props) => (props.isLastElm ? null : '1px solid #eff3f4')};
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const StationDirection = styled.p`
+  max-width: calc(100% - ${buttonSize});
   font-weight: 700;
   font-size: 16px;
 `;
 
 const StationRegisterContainer = styled.button`
-  width: 18vw;
+  width: ${buttonSize};
   color: white;
   font-size: 14px;
   text-align: center;
   background-color: ${BLUE};
-  border-radius: 32px;
+  border-radius: 9999px;
   padding: 10px 0;
 `;

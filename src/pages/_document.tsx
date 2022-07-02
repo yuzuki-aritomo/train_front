@@ -17,23 +17,39 @@ class MyDocument extends Document {
       <Html dir="ltr" lang="ja-JP">
         <Head>
           {/* windows */}
-          <meta content="/site-tile-70x70.png" name="msapplication-square70x70logo" />
-          <meta content="/site-tile-150x150.png" name="msapplication-square150x150logo" />
-          <meta content="/site-tile-310x150.png" name="msapplication-wide310x150logo" />
-          <meta content="/site-tile-310x310.png" name="msapplication-square310x310logo" />
-          <meta content="#000" name="msapplication-TileColor" />
+          <meta
+            content="/src/assets/favicons/site-tile-70x70.png"
+            name="msapplication-square70x70logo"
+          />
+          <meta
+            content="/src/assets/favicons/site-tile-150x150.png"
+            name="msapplication-square150x150logo"
+          />
+          <meta
+            content="/src/assets/favicons/site-tile-310x150.png"
+            name="msapplication-wide310x150logo"
+          />
+          <meta
+            content="/src/assets/favicons/site-tile-310x310.png"
+            name="msapplication-square310x310logo"
+          />
+          <meta content="#6C9BD2" name="msapplication-TileColor" />
+
           {/* safari */}
           <meta content="yes" name="apple-mobile-web-app-capable" />
-          <meta content="#000" name="apple-mobile-web-app-status-bar-style" />
-          <meta content="myapp" name="apple-mobile-web-app-title" />
-          <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+          <meta content="#6C9BD2" name="apple-mobile-web-app-status-bar-style" />
+          <meta content="TrainDash" name="apple-mobile-web-app-title" />
+          <link
+            href="/src/assets/favicons/apple-touch-icon-180x180.png"
+            rel="apple-touch-icon"
+            sizes="180x180"
+          />
           {/* 一般 */}
-          <meta content="myapp" name="application-name" />
-          <meta content="#000" name="theme-color" />
-          <meta content="this is myapp" name="description" />
-          <link href="/icon-192x192.png" rel="icon" sizes="192x192" />
-          <link href="/favicon.ico" rel="icon" />
-          <link href="/manifest.json" rel="manifest" />
+          <meta content="TrainDash" name="application-name" />
+          <meta content="#6C9BD2" name="theme-color" />
+          <link href="/src/assets/favicons/icon-192x192.png" rel="icon" sizes="192x192" />
+          <link href="/src/assets/favicons/favicon.ico" rel="icon" />
+          <link href="/src/assets/favicons/manifest.json" rel="manifest" />
         </Head>
         <body>
           <Main />

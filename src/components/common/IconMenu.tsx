@@ -16,9 +16,6 @@ export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
 
   return (
     <Menus>
-      <IconMenuBox>
-        <ReplayIcon style={iconStyle} />
-      </IconMenuBox>
       <IconMenuBox
         onClick={() => {
           props.isHomePage ? router.push('/settings') : router.push('/');
@@ -30,29 +27,32 @@ export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
           <HomeOutlinedIcon style={iconStyle} />
         )}
       </IconMenuBox>
+      <IconMenuBox>
+        <ReplayIcon style={iconStyle} onClick={() => location.reload()} />
+      </IconMenuBox>
     </Menus>
   );
 });
 
 const Menus = styled.div`
+  position: absolute;
+  bottom: 7%;
+  right: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  column-gap: 15px;
+  row-gap: 15px;
+  z-index: 100;
 `;
 
 const IconMenuBox = styled.button`
-  width: 55px;
-  height: 55px;
-  bottom: 10%;
-  right: 20px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  background-color: ${WHITE};
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  z-index: 100;
+  width: 55px;
+  height: 55px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: ${WHITE};
+  border-radius: 8px;
 `;

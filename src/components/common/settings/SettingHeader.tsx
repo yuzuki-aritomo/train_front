@@ -13,7 +13,7 @@ export const SettingHeader: React.FC<SettingHeaderProps> = (props) => {
   return (
     <SettingHeaderWrapper>
       <ArrowBackIosNewIcon
-        sx={{ width: '35px', margin: '0 0 0 10px' }}
+        sx={{ width: '20px' }}
         onClick={() => {
           router.back();
         }}
@@ -24,12 +24,14 @@ export const SettingHeader: React.FC<SettingHeaderProps> = (props) => {
 };
 
 const SettingHeaderWrapper = styled.div`
-  height: 48px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+  height: 53px;
+  padding: 0px 16px;
   background-color: ${WHITE};
   margin-bottom: 20px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
 `;
 
 const SettingName = styled.p`

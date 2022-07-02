@@ -12,7 +12,8 @@ export const Settings = () => {
         <SettingListItemsWrapper>
           <SettingListItem isLastChild name="駅を変更" route="/settings/change-stations" />
         </SettingListItemsWrapper>
-        {/* 以下リリース時のみ
+        {/* 以下リリース時のみ */}
+        {/* 
         <SettingListItemsWrapper>
           <SettingListItem name="駅を変更" route="/settings/change-stations" />
           <SettingListItem isLastChild name="パスワードを変更" route="/" />
@@ -24,7 +25,8 @@ export const Settings = () => {
         </SettingListItemsWrapper>
         <SettingListItemsWrapper>
           <SettingListItem isLastChild name="ログアウト" route="/" />
-        </SettingListItemsWrapper> */}
+        </SettingListItemsWrapper>
+        */}
       </SettingContainer>
       <IconMenu isHomePage={false} />
     </>

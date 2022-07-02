@@ -1,9 +1,11 @@
+import { CircularProgress } from '@mui/material';
 import type { AppProps } from 'next/app';
 import 'destyle.css';
 import '@/context/style/globalStyle.css';
 import 'swiper/css/bundle';
 import { useEffect } from 'react';
 import { RecoilRoot, useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 import { getStationInfo } from '@/components/util/storage/getStationInfo';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
@@ -27,7 +29,12 @@ function AppInit({ Component, pageProps }: AppProps): JSX.Element {
     setSelectedStation(initStationData);
   }, []);
 
-  if (selectedStation === null) return <p>Loading...</p>;
+  if (selectedStation === null)
+    return (
+      <LoadingWrapper>
+        <CircularProgress />
+      </LoadingWrapper>
+    );
   return <Component {...pageProps} />;
 }
 
@@ -40,3 +47,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 }
 
 export default MyApp;
+
+const LoadingWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

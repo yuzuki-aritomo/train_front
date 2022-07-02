@@ -3,7 +3,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { NextRouter, useRouter } from 'next/router';
 import React, { FC, memo } from 'react';
 import styled from 'styled-components';
-import { BLUE, WHITE } from '@/context/style/colorTheme';
+import { WHITE } from '@/context/style/colorTheme';
 
 type IconMenuType = {
   isHomePage: boolean;
@@ -19,9 +19,9 @@ export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
       }}
     >
       {props.isHomePage ? (
-        <SettingsOutlinedIcon style={{ color: BLUE, fontSize: '2.5rem' }} />
+        <SettingsOutlinedIcon style={{ color: '#0F141A', fontSize: '2.5rem' }} />
       ) : (
-        <HomeOutlinedIcon style={{ color: BLUE, fontSize: '2.5rem' }} />
+        <HomeOutlinedIcon style={{ color: "'#0F141A'", fontSize: '2.5rem' }} />
       )}
     </IconMenuBox>
   );

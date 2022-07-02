@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from 'react';
+import type { SetStateAction, Dispatch } from 'react';
 import type { CountDownType } from '@/components/common/index/MainCountdown';
 
 type CalcTimeDeltaProps = {

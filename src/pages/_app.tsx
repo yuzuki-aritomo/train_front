@@ -40,13 +40,20 @@ function AppInit({ Component, pageProps }: AppProps): JSX.Element {
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <RecoilRoot>
-      <AppInit Component={Component} pageProps={pageProps} router={router} />
-    </RecoilRoot>
+    <Wrapper>
+      <RecoilRoot>
+        <AppInit Component={Component} pageProps={pageProps} router={router} />
+      </RecoilRoot>
+    </Wrapper>
   );
 }
 
 export default MyApp;
+
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
 
 const LoadingWrapper = styled.div`
   position: absolute;

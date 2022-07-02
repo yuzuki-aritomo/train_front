@@ -1166,6 +1166,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@holiday-jp/holiday_jp@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@holiday-jp/holiday_jp/-/holiday_jp-2.3.0.tgz#1eda2a59c67ae6d16c54101f23c2d3fa3ce264c0"
+  integrity sha512-heHm8al0J6SQcTKAYPcydaouTELQ71cr9yPmSdsmr6cXINDbqwfvQIgFH9LO7EHiZXBPcEWX7jUzEUHKBYtAkQ==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
@@ -3069,6 +3074,10 @@ hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0, hoist-non-react-
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
+
+holiday_jp@holiday-jp/holiday_jp:
+  version "0.0.0"
+  resolved "https://codeload.github.com/holiday-jp/holiday_jp/tar.gz/398a63ea386a5000dcf818a2d2aad1e64538a631"
 
 human-signals@^2.1.0:
   version "2.1.0"

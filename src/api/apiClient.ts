@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const apiClient = axios.create({
-  baseURL: 'https://train-api-rails.herokuapp.com',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });

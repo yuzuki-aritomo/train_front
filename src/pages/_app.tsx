@@ -2,20 +2,41 @@ import type { AppProps } from 'next/app';
 import 'destyle.css';
 import '@/context/style/globalStyle.css';
 import 'swiper/css/bundle';
-import styled from 'styled-components';
-import { BLUE } from '@/context/style/colorTheme';
+import { useEffect } from 'react';
+import { RecoilRoot, useRecoilState } from 'recoil';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import { getStationInfo } from '@/components/util/storage/getStationInfo';
+import { selectedStationState } from '@/context/globalStates/selectedStationState';
+import type { SelectedStationType } from '@/types/SelectedStationType';
+
+function AppInit({ Component, pageProps }: AppProps): JSX.Element {
+  const initStationData: SelectedStationType = {
+    id: 3071,
+    line_cd: 11605,
+    line_name: 'JR湖西線',
+    selected_direction: '敦賀方面',
+    station_cd: 1160501,
+    station_name: '京都',
+  };
+
+  const [selectedStation, setSelectedStation] = useRecoilState(selectedStationState);
+
+  useEffect(() => {
+    const stationData: SelectedStationType | null = getStationInfo();
+    if (stationData) return setSelectedStation(stationData);
+    setSelectedStation(initStationData);
+  }, []);
+
+  if (selectedStation === null) return <p>Loading...</p>;
+  return <Component {...pageProps} />;
+}
+
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <Wapper>
-      <Component {...pageProps} />
-    </Wapper>
+    <RecoilRoot>
+      <AppInit Component={Component} pageProps={pageProps} router={router} />
+    </RecoilRoot>
   );
 }
 
 export default MyApp;
-
-const Wapper = styled.div`
-  position: relative;
-  border: 1px solid ${BLUE};
-`;

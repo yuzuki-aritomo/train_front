@@ -1,7 +1,11 @@
 import { Modal } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import type { StationType } from '@/components/pages/change-stations/ChangeStations';
+import { selectedStationState } from '@/context/globalStates/selectedStationState';
 import { GRAY, WHITE } from '@/context/style/colorTheme';
+import type { SelectedStationType } from '@/types/SelectedStationType';
+import type { StationType } from '@/types/StationType';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;
@@ -9,22 +13,15 @@ type StationDirectionModalProps = {
   stationToStore: StationType;
 };
 
-type StoreStationType = {
-  id: number;
-  line_cd: number;
-  line_name: string;
-  station_cd: number;
-  station_name: string;
-  selected_direction: string;
-};
-
 export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
+  const router = useRouter();
+  const setSelectedStation = useSetRecoilState(selectedStationState);
+
   const onClickStationDir = (data: string | undefined) => {
-    if (data === undefined) {
-      return;
-    }
+    if (data === undefined) return;
+
     const stationToStore: StationType = props.stationToStore;
-    const StoreStation: StoreStationType = {
+    const StoreStation: SelectedStationType = {
       id: stationToStore.id,
       line_cd: stationToStore.line_cd,
       line_name: stationToStore.stationLineName,
@@ -32,8 +29,11 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
       station_name: stationToStore.stationName,
       selected_direction: data,
     };
+
     localStorage.setItem('station', JSON.stringify(StoreStation));
-    const getStation: StoreStationType = JSON.parse(localStorage.getItem('station') || '{}');
+
+    const getStation: SelectedStationType = JSON.parse(localStorage.getItem('station') || '{}');
+
     if (getStation.station_name === '') {
       alert('エラーが発生しました。');
     } else {
@@ -46,6 +46,8 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
           getStation.selected_direction +
           ' で登録されました。'
       );
+      router.push('/');
+      setSelectedStation(getStation);
     }
   };
 
@@ -89,7 +91,7 @@ const ModalSelectWrapper = styled.div`
   width: 50vw;
   margin: 30px auto 0 auto;
   font-weight: 700;
-  fontsize: 16px;
+  font-size: 16px;
 `;
 
 const StationDirectionWrapper = styled.div`

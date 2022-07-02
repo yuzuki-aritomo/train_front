@@ -103,14 +103,14 @@ export const ChangeStations = () => {
 };
 
 const SearchField = styled.div`
-  width: 94vw;
-  border-radius: 16px;
+  width: 95vw;
+  border-radius: 9999px;
   background-color: #eff3f4;
-  padding: 1px 0;
   margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 `;
 
 const SearchInput = styled.input`
@@ -131,4 +131,5 @@ const StationCardList = styled.div`
   text-align: center;
   border-top: 1px solid #eff3f4;
   overflow: scroll;
+  padding-bottom: 100px;
 `;

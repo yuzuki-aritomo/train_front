@@ -9,15 +9,13 @@ type StationCardProps = {
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
   return (
-    <>
-      <StationCardWrapper>
-        <StationInfo>
-          <StationName>{props.Station.stationName}</StationName>
-          <StationLineName>{props.Station.stationLineName}</StationLineName>
-        </StationInfo>
-        <StationRegisterButton onClick={props.onClickStation}>選択</StationRegisterButton>
-      </StationCardWrapper>
-    </>
+    <StationCardWrapper>
+      <StationInfo>
+        <StationName>{props.Station.stationName}</StationName>
+        <StationLineName>{props.Station.stationLineName}</StationLineName>
+      </StationInfo>
+      <StationRegisterButton onClick={props.onClickStation}>選択</StationRegisterButton>
+    </StationCardWrapper>
   );
 };
 
@@ -30,6 +28,7 @@ const StationCardWrapper = styled.div`
   width: 100%;
   padding: 16px 12px;
   border-bottom: 1px solid #eff3f4;
+  font-weight: bold;
 `;
 
 const StationInfo = styled.div`
@@ -40,7 +39,6 @@ const StationInfo = styled.div`
 const StationName = styled.p`
   max-width: 100%;
   font-size: 16px;
-  font-weight: bold;
   color: ${BLACK};
   text-align: left;
   white-space: nowrap;

@@ -3,7 +3,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { NextRouter, useRouter } from 'next/router';
 import React, { FC, memo } from 'react';
 import styled from 'styled-components';
-import { BLACK, WHITE } from '@/context/style/colorTheme';
+import { BLUE, WHITE } from '@/context/style/colorTheme';
 
 type IconMenuType = {
   isHomePage: boolean;
@@ -19,19 +19,19 @@ export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
       }}
     >
       {props.isHomePage ? (
-        <SettingsOutlinedIcon style={{ color: BLACK, fontSize: '2.5rem' }} />
+        <SettingsOutlinedIcon style={{ color: BLUE, fontSize: '2.5rem' }} />
       ) : (
-        <HomeOutlinedIcon style={{ color: BLACK, fontSize: '2.5rem' }} />
+        <HomeOutlinedIcon style={{ color: BLUE, fontSize: '2.5rem' }} />
       )}
     </IconMenuBox>
   );
 });
 
 const IconMenuBox = styled.button`
-  width: 50px;
-  height: 50px;
-  top: 75%;
-  left: 80%;
+  width: 55px;
+  height: 55px;
+  bottom: 10%;
+  right: 20px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   background-color: ${WHITE};
   border-radius: 8px;

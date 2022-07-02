@@ -5,7 +5,6 @@ import { apiClient } from '@/api/apiClient';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';
-import { GRAY } from '@/context/style/colorTheme';
 import type { StationType } from '@/types/StationType';
 
 export type ResponseStationType = {
@@ -64,7 +63,7 @@ export const ChangeStations = () => {
     <>
       <SettingHeader pageName="駅を変更" />
       <SearchField>
-        <SearchIcon sx={{ fontSize: '30px', padding: '2px', marginLeft: '2vw' }} />
+        <SearchIcon />
         <SearchInput
           placeholder="駅名を入力してください"
           type="search"
@@ -106,7 +105,7 @@ export const ChangeStations = () => {
 const SearchField = styled.div`
   width: 94vw;
   border-radius: 16px;
-  background-color: ${GRAY};
+  background-color: #eff3f4;
   padding: 1px 0;
   margin: 20px auto;
   display: flex;
@@ -117,17 +116,19 @@ const SearchField = styled.div`
 const SearchInput = styled.input`
   width: 80%;
   height: 100%;
-  background-color: ${GRAY};
   border: 0;
-  padding: 10px;
+  padding: 12px 5px;
   :focus {
     outline: 0ch;
+  }
+  ::placeholder {
+    color: #526371;
   }
 `;
 
 const StationCardList = styled.div`
   height: 80vh;
   text-align: center;
-  border-top: 1px solid ${GRAY};
+  border-top: 1px solid #eff3f4;
   overflow: scroll;
 `;

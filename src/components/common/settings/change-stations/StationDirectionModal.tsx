@@ -2,10 +2,10 @@ import { Modal } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import type { StationType } from '@/components/pages/change-stations/ChangeStations';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
 import { GRAY, WHITE, BLUE } from '@/context/style/colorTheme';
 import type { SelectedStationType } from '@/types/SelectedStationType';
+import type { StationType } from '@/types/StationType';
 
 type StationDirectionModalProps = {
   isModalOpen: boolean;

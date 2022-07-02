@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
-import { GRAY, WHITE } from '@/context/style/colorTheme';
+import { GRAY, WHITE, BLUE } from '@/context/style/colorTheme';
 import type { SelectedStationType } from '@/types/SelectedStationType';
 import type { StationType } from '@/types/StationType';
 
@@ -69,7 +69,6 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
             </StationDirectionWrapper>
           );
         })}
-        ;
       </ModalBox>
     </Modal>
   );
@@ -113,7 +112,7 @@ const StationRegisterContainer = styled.button`
   color: white;
   font-size: 14px;
   text-align: center;
-  background-color: purple;
+  background-color: ${BLUE};
   border-radius: 32px;
   padding: 10px 0;
 `;

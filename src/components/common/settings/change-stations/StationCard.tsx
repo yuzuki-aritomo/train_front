@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BLACK, GRAY } from '@/context/style/colorTheme';
+import { BLACK, BLUE, WHITE } from '@/context/style/colorTheme';
 import type { StationType } from '@/types/StationType';
 
 type StationCardProps = {
@@ -9,43 +9,47 @@ type StationCardProps = {
 
 export const StationCard: React.FC<StationCardProps> = (props) => {
   return (
-    <>
-      <StationCardWrapper>
-        <div>
-          <StationName>{props.Station.stationName}</StationName>
-          <StationLineName>{props.Station.stationLineName}</StationLineName>
-        </div>
-        <StationRegisterContainer onClick={props.onClickStation}>選択</StationRegisterContainer>
-      </StationCardWrapper>
-    </>
+    <StationCardWrapper>
+      <StationInfo>
+        <StationName>{props.Station.stationName}</StationName>
+        <StationLineName>{props.Station.stationLineName}</StationLineName>
+      </StationInfo>
+      <StationRegisterButton onClick={props.onClickStation}>選択</StationRegisterButton>
+    </StationCardWrapper>
   );
 };
 
+const buttonSize = '70px';
+
 const StationCardWrapper = styled.div`
-  width: 96%;
-  height: 68px;
-  border-bottom: 1px solid ${GRAY};
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 16px 12px;
+  border-bottom: 1px solid #eff3f4;
+  font-weight: bold;
+`;
+
+const StationInfo = styled.div`
+  width: calc(100% - ${buttonSize});
+  padding-right: 10px;
 `;
 
 const StationName = styled.p`
-  width: 100%;
+  max-width: 100%;
   font-size: 16px;
-  font-weight: bold;
   color: ${BLACK};
-  margin: 0;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 5px;
 `;
 
 const StationLineName = styled.p`
   width: 100%;
-  color: purple;
+  color: ${BLUE};
   font-size: 14px;
   margin: 0;
   text-align: left;
@@ -54,11 +58,11 @@ const StationLineName = styled.p`
   text-overflow: ellipsis;
 `;
 
-const StationRegisterContainer = styled.button`
-  width: 18vw;
-  color: white;
+const StationRegisterButton = styled.button`
+  width: ${buttonSize};
+  color: ${WHITE};
   font-size: 14px;
-  background-color: purple;
-  border-radius: 32px;
+  background-color: ${BLUE};
+  border-radius: 9999px;
   padding: 10px 0;
 `;

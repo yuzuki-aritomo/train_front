@@ -1,4 +1,5 @@
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import ReplayIcon from '@mui/icons-material/Replay';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { NextRouter, useRouter } from 'next/router';
 import React, { FC, memo } from 'react';
@@ -11,21 +12,35 @@ type IconMenuType = {
 
 export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
   const router: NextRouter = useRouter();
+  const iconStyle = { color: '#0F141A', fontSize: '2.5rem' };
 
   return (
-    <IconMenuBox
-      onClick={() => {
-        props.isHomePage ? router.push('/settings') : router.push('/');
-      }}
-    >
-      {props.isHomePage ? (
-        <SettingsOutlinedIcon style={{ color: '#0F141A', fontSize: '2.5rem' }} />
-      ) : (
-        <HomeOutlinedIcon style={{ color: "'#0F141A'", fontSize: '2.5rem' }} />
-      )}
-    </IconMenuBox>
+    <Menus>
+      <IconMenuBox>
+        <ReplayIcon style={iconStyle} />
+      </IconMenuBox>
+      <IconMenuBox
+        onClick={() => {
+          props.isHomePage ? router.push('/settings') : router.push('/');
+        }}
+      >
+        {props.isHomePage ? (
+          <SettingsOutlinedIcon style={iconStyle} />
+        ) : (
+          <HomeOutlinedIcon style={iconStyle} />
+        )}
+      </IconMenuBox>
+    </Menus>
   );
 });
+
+const Menus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  column-gap: 15px;
+`;
 
 const IconMenuBox = styled.button`
   width: 55px;

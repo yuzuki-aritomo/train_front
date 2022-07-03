@@ -2,7 +2,7 @@
 最寄りの駅の電車出発時刻をカウントダウン形式で表示するアプリ
 
 ## Contributer
-Frontend：[Taisei Yamashita](https://github.com/taisei1989), [Tatsuki Nakagawa](https://github.com/Tatsu-tatsu, [Yuzuki Aritomo](https://github.com/yuzuki-aritomo)
+Frontend：[Taisei Yamashita](https://github.com/taisei1989), [Tatsuki Nakagawa](https://github.com/Tatsu-tatsu), [Yuzuki Aritomo](https://github.com/yuzuki-aritomo)
 
 Backend：[Yuzuki Aritomo](https://github.com/yuzuki-aritomo), [Kouta Kawabuchi](https://github.com/ppputtyo), [Miyu Suzuki](https://github.com/miyu-wl)
 

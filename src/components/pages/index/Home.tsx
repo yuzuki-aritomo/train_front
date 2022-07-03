@@ -1,5 +1,6 @@
+import { Alert, Snackbar } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { getDepartureTimes } from '@/api/getDepartureTimes';
 import { IconMenu } from '@/components/common/IconMenu';
@@ -10,12 +11,18 @@ import 'swiper/css/pagination';
 import { CountdownList } from '@/components/common/index/CountdownList';
 import { OtherStation } from '@/components/common/index/OtherStation';
 import { SelectedStation } from '@/components/common/index/SelectedStation';
+import { isShownSnackBarState } from '@/context/globalStates/isShownSnackBarState';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
 import type { DepartureTimesType } from '@/types/DepartureTimesType';
 
 export const Home: FC = () => {
   const selectedStation = useRecoilValue(selectedStationState);
+  const [isShownSnackBar, setIsShownSnackBar] = useRecoilState(isShownSnackBarState);
   const [departureTimes, setDepartureTimes] = useState<DepartureTimesType>();
+
+  const closeSnackBar = () => {
+    setIsShownSnackBar(false);
+  };
 
   const setDepartureTimesData = async () => {
     if (!selectedStation) return;
@@ -45,6 +52,15 @@ export const Home: FC = () => {
       </StationsWrapper>
       <CountdownList departureTimes={departureTimes} />
       <IconMenu isHomePage={true} />
+      <Snackbar autoHideDuration={3000} open={isShownSnackBar} onClose={closeSnackBar}>
+        <Alert
+          severity="success"
+          sx={{ width: '100%', fontWeight: 'bold' }}
+          onClose={closeSnackBar}
+        >
+          登録駅が更新されました
+        </Alert>
+      </Snackbar>
     </HomeWrapper>
   );
 };

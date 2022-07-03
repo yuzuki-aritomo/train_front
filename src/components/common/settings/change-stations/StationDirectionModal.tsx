@@ -2,6 +2,7 @@ import { Modal } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { isShownSnackBarState } from '@/context/globalStates/isShownSnackBarState';
 import { selectedStationState } from '@/context/globalStates/selectedStationState';
 import { WHITE, BLUE } from '@/context/style/colorTheme';
 import type { SelectedStationType } from '@/types/SelectedStationType';
@@ -15,6 +16,7 @@ type StationDirectionModalProps = {
 
 export const StationDirectionModal: React.FC<StationDirectionModalProps> = (props) => {
   const router = useRouter();
+  const setIsShownSnackBar = useSetRecoilState(isShownSnackBarState);
   const setSelectedStation = useSetRecoilState(selectedStationState);
 
   const onClickStationDir = (data: string | undefined) => {
@@ -37,17 +39,9 @@ export const StationDirectionModal: React.FC<StationDirectionModalProps> = (prop
     if (getStation.station_name === '') {
       alert('エラーが発生しました。');
     } else {
-      console.log('success');
-      alert(
-        getStation.line_name +
-          ' / ' +
-          getStation.station_name +
-          ' / ' +
-          getStation.selected_direction +
-          ' で登録されました。'
-      );
       router.push('/');
       setSelectedStation(getStation);
+      setIsShownSnackBar(true);
     }
   };
 

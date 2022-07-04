@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { apiClient } from '@/api/apiClient';
+import { getStation } from '@/api/getStation';
 import { StationCard } from '@/components/common/settings/change-stations/StationCard';
 import { StationDirectionModal } from '@/components/common/settings/change-stations/StationDirectionModal';
 import { SettingHeader } from '@/components/common/settings/SettingHeader';
@@ -33,25 +33,8 @@ export const ChangeStations = () => {
     if (!searchStationName) return setStationsList([]);
 
     const timeoutId = setTimeout(async () => {
-      try {
-        const responseData = (
-          await apiClient.get<ResponseStationType>(`/search?name=${searchStationName}`)
-        ).data;
-        console.log('responseData:', responseData);
-        const newStationList = responseData.data.map((data): StationType => {
-          return {
-            id: data.id,
-            line_cd: data.line_cd,
-            station_cd: data.station_cd,
-            stationName: data.station_name,
-            stationLineName: data.line_name,
-            stationDirection: [data.direction_1, data.direction_2].filter((v) => v),
-          };
-        });
-        setStationsList(newStationList);
-      } catch (error) {
-        console.log(error);
-      }
+      const newStationList = await getStation(searchStationName);
+      setStationsList(newStationList);
     }, 500);
 
     return () => {

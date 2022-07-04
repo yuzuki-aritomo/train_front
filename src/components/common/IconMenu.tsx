@@ -8,6 +8,7 @@ import { WHITE } from '@/context/style/colorTheme';
 
 type IconMenuType = {
   isHomePage: boolean;
+  reloadFn?: () => void;
 };
 
 export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
@@ -28,7 +29,7 @@ export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
         )}
       </IconMenuBox>
       <IconMenuBox>
-        <ReplayIcon style={iconStyle} onClick={() => location.reload()} />
+        <ReplayIcon style={iconStyle} onClick={props.reloadFn} />
       </IconMenuBox>
     </Menus>
   );

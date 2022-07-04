@@ -51,7 +51,7 @@ export const Home: FC = () => {
         <OtherStation />
       </StationsWrapper>
       <CountdownList departureTimes={departureTimes} />
-      <IconMenu isHomePage={true} />
+      <IconMenu isHomePage={true} reloadFn={setDepartureTimesData} />
       <Snackbar autoHideDuration={3000} open={isShownSnackBar} onClose={closeSnackBar}>
         <Alert
           severity="success"

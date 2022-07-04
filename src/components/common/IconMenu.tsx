@@ -8,7 +8,7 @@ import { WHITE } from '@/context/style/colorTheme';
 
 type IconMenuType = {
   isHomePage: boolean;
-  reloadFn: () => void;
+  reloadFn?: () => void;
 };
 
 export const IconMenu: FC<IconMenuType> = memo(function IconMenu(props) {
